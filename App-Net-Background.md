@@ -1,0 +1,26 @@
+# App-Net
+
+Measurment framework for testbed-driven comparison of Application-Network-Interaction (App-Net). This repository contains the source coude for Application-Network Interaction building blocks, as discussed in this [paper]( http://ieeexplore.ieee.org/abstract/document/7810252/).
+
+# Key building blocks: App-Net
+The key building blocks for App-Net are Application Monitoring (AM), Network Monitoring (NM), Application Control (AC), Network Control (NC), and a Policy Manager (PM), which decides about control actions based on monitoring information. The message broker depicted below facilitates the interaction between the involved entities. 
+Information from AM (e.g. buffer filling level, current video quality, device properties) and NM (e.g. current throughput) are sent to the message broker. The message broker is responsible for forwarding information where it is needed, hence, the monitoring information is communicated to the PM. The PM runs algorithms to decide about appropriate control actions. This information is sent to the PM, which forwards network control instructions to NC, and application control instructions to AC, respectively. 
+
+![alt text](https://github.com/lsinfo3/App-Net/blob/master/illustrations/message_broker.png)
+
+# Testbed
+We deployed the entities within a physical testbed, as illustrated below. It consists of a media server, which stores the Big Buck Bunny video in several resolutions and bitrate encodings to support adaptive streaming (HAS).
+A second machine acts as a router and provides functionalities for rate limiting, configurations of queues with fixed bandwidth or differente priorities, and regular probing of throughput. 
+The video clients, which use the [TAPAS](https://github.com/ldecicco/tapas) DASH player, are running on another machine, which also runs the Policy Manager. 
+Finally, one machine runs the message broker, which is based on ZeroMQ (http://zeromq.org/).
+
+![alt text](https://github.com/lsinfo3/App-Net/blob/master/illustrations/testbed.PNG)
+
+# Implemented mechanisms 
+In order to perform an objective comparison of different App-Net solutions, three mechanisms from published work have been implemented. They all target an enhancement of user QoE for video streaming by applying different functionalities for monitoring and control on application- and network-layer. 
+We depict the information exchanged via the message broker in the illustration below. 
+
+1) The first mechanism is called Quality of Experience Fairness Framework (QoE-FF). It's objective is to deliver a fair video quality among clients. Due to different device capabilities, e.g. screen resolution, they have different demans with different demands on the network. As TCP shares network resources in fair manner without considering such factors, users with high resolution devices might suffer bad quality if the resources are limited. To overcome this issue, QoE-FF instructs all clients about the video quality to request, so as to support a fair video quality among all clients. To do so, each client sends its screen resolution to the PM during service establishment. Furthermore, each client regularly signals its bandwidth estimation to the PM. With this information, the PM is informed about all active clients, their device capabilities, and has an up to date approximation about available network resources. The PM is equipped with mapping, that returns the resulting video quality for a bitrate/resolution tuple. With this information, the PM is capable to decide about the bitrate to request for each client, so that every user has a similar video quality. The bitrates to request are signaled to clients. 
+2) The second mechanism is called Stallig Prevention Mechanism (SPM). Its target is to prevent video interruptions during playback. Before each get request, a client sends its current buffer state and the size of the last segment to the PM. The PM also regularly receives bandwidth probes from the network (NM). With this information, the PM estimates whether the next segment requested by a client will arrive in time, i.e. before the buffer drains out, or not. In case it will arrive in time, the client can request the segment as conventional. In case the segment will arrive too late, the client is instructed to request the lowest quality possible, as smaller segments can be transmitted more quickly. Furthermore, the network is informed to prioritize the client's flow. 
+3) Similar to the first approach, the last one also targets a fair video quality among heterogeneous clients. However, instead of instructing the clients about the bitrates to request, this mechanism considers bandwidth reservation within the network. The PM receives information about a client's screen resolution when initiating a video stream. By means of regular updates from network monitoring, the PM is informed about the available bandwidth. Similar to the first approach, the PM is equipped with a mapping function which returns the resulting video quality for specific resolution/bitrate tuples. The PM decides about the bandwidth slices for each client and signals this informatino to the network control. Finally, the different queues are configured accordingly at the router. 
+![alt text](https://github.com/lsinfo3/App-Net/blob/master/illustrations/mechanisms.PNG)
