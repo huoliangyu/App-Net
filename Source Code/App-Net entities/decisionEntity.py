@@ -41,7 +41,7 @@ class DecisionEntity():
 
 	def __init__(self,cur_throughputBE=0.0,cur_throughputPrio=0,
 		cur_bufferSize=0,cur_chunkSize=0,cur_chunkLength=0,
-		cur_quality=0,cur_clients_be=[],cur_clients_prio=[],log_sub_dir='', log_period=0.1, client_map='',a='',beTimeSeriesList=[],smoothedTimeSeries=[], request_order=''):
+		cur_quality=0,cur_clients_be=[],cur_clients_prio=[],log_sub_dir='', log_period=0.1, 				  client_map='',a='',beTimeSeriesList=[],smoothedTimeSeries=[], request_order=''):
 
 		self.cur_throughputBE=cur_throughputBE
 		self.cur_throughputPrio=cur_throughputPrio
@@ -63,9 +63,6 @@ class DecisionEntity():
 		self.beTimeSeriesList=[];
 		self.smoothedTimeSeries=[];
 		
-
-
-
 		self.client_map={}
 		self.a={}
 		self.request_order=[];
@@ -73,12 +70,6 @@ class DecisionEntity():
 		supervise_thread.daemon = True
   	    	supervise_thread.start()
 		connectZMQ(self)
-
-
-		
-		
-
-
 
 def actualizeQueue(self):
 	num_clients=len(self.client_map)
@@ -141,8 +132,6 @@ def log_it(self,dictionary):
 	time.sleep(0.1)
 
 def startEntity():
-	
-	
 	
 	testEntity=DecisionEntity(cur_throughputBE=0,cur_throughputPrio=0,cur_bufferSize=0,
 	cur_chunkSize=0,cur_chunkLength=0,cur_quality=0,cur_clients_be=[],cur_clients_prio=[],log_sub_dir='',log_period=0.1);
@@ -232,14 +221,11 @@ def checkClient(self,clientInfo,t_pid):
 		de_event_log.flush()
 
 
-
-
 def initializeClients(clients):
 	for x in clients:
 		xsplit=x.split(':')
 		c=Client(xsplit[0],xsplit[1],0,0,0)
 		clientMap[xsplit[0]]=c
-
 
 def updateThroughput(tp):
 	self.tp=tp
@@ -262,7 +248,6 @@ def updateNetworkParams(self, throughputBE,throughputPrio):
 	self.cur_throughputBE=throughputBE
 	self.cur_throughputPrio=throughputPrio
 	
-
 def updateAppParams(self, bufferSize,chunkSize,quality, segmentDur,clientInfo):
 	#print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 	#print("[Decision Entity] Updated Application Data")
@@ -276,7 +261,6 @@ def getClients(self):
 	Get the clients that have been initialized
 	'''
 	return self.clients
-
 
 def setThroughputBE(throughputBE):
 	'''
@@ -302,7 +286,6 @@ def getThroughputPrio(self):
 	Get the current throughput of Prio-Queue
 	'''
 	return self.cur_throughputPrio
-
 
 def getBufferSize(self):
 	'''
@@ -411,7 +394,6 @@ def makeDecision(self,bufferstate, size_of_segment, qualityLevel, segmentDur, cl
 
 	decisionEntityLog=self.a[c_identifier]
 
-	
 	thrBE=getThroughputBE(self)	
 	thrPrio=getThroughputPrio(self)
 	totalClientsBE=getClientsBE(self)
@@ -420,7 +402,6 @@ def makeDecision(self,bufferstate, size_of_segment, qualityLevel, segmentDur, cl
 	prio=0
 	consecutivePrioPerClient=getConsecutivePrioPerClient(self,str(c_identifier))
 
-			
 	if consecutivePrioPerClient < maxConsecutivePrio:
 		if abs(float(thrBE)-0)==0:
 			thrBE=1
@@ -481,13 +462,11 @@ def makeDecision(self,bufferstate, size_of_segment, qualityLevel, segmentDur, cl
 		resetConsecutivePrioPerClient(self,c_identifier)
 		assignClientToQueue(self,prio,c_identifier)
 
-	
-	print("prio is "+str(prio))
 	if prio==1:
 		print colored('PRIORITIZED','yellow')
 
 	return prio
-	
+
 
 if __name__ == '__main__':
  	startEntity()
