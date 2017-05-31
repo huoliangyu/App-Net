@@ -31,7 +31,7 @@ echo "zmq port 6 is" ${zmqPort[6]}
 
 xterm -hold -title "policyManager" -e "timeout 445s python orchestrator_nade.py $bw $bw_usage $folder"&
 
-xterm -hold -title "messageBroker" -e "echo -e \"timeout 450s bash startZMQ_nade.sh $folder_to_log\n\" | nc 192.168.1.2 5678" &	
+xterm -hold -title "messageBroker" -e "echo -e \"timeout 450s bash startZMQ.sh $folder_to_log\n\" | nc 192.168.1.2 5678" &	
 
 sleep 7
 
