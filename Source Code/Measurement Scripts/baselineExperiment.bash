@@ -18,57 +18,35 @@ xterm -hold -title "zmqZeuch" -e "echo -e \"timeout 450s bash startZMQ.sh $folde
 
 sleep 5
 
-#streamtime_temp=`expr 360 - ${sleeptime[1]}`
-#einh='s'
-#streamtime=$streamtime_temp$einh
-
 streamtime_temp=420
 einh='s'
 streamtime=$streamtime_temp$einh
 
 (sleep ${sleeptime[1]}; xterm -hold -title "c1" -e "timeout $streamtime python ../tapas/play.py -m fake -u http://172.16.44.5/bbb/bbbHQ.m3u8 -l $folder_to_log")&
 
-#streamtime_temp=`expr 360 - ${sleeptime[2]}`
-#einh='s'
-#streamtime=$streamtime_temp$einh
-streamtime_temp=420
+
 einh='s'
 streamtime=$streamtime_temp$einh
 (sleep ${sleeptime[2]}; xterm -hold -title "c2" -e "timeout $streamtime python ../tapas/play.py -m fake -u http://172.16.44.5/bbb/bbbHQ.m3u8 -l $folder_to_log")&
 
-#streamtime_temp=`expr 360 - ${sleeptime[3]}`
-#einh='s'
-#streamtime=$streamtime_temp$einh
-streamtime_temp=420
+
 einh='s'
 streamtime=$streamtime_temp$einh
 (sleep ${sleeptime[3]}; xterm -hold -title "c3" -e "timeout $streamtime python ../tapas/play.py -m fake -u http://172.16.44.5/bbb/bbbMQ.m3u8 -l $folder_to_log")&
 
-#streamtime_temp=`expr 360 - ${sleeptime[4]}`
-#einh='s'
-#streamtime=$streamtime_temp$einh
 
-streamtime_temp=420
 einh='s'
 streamtime=$streamtime_temp$einh
 
 (sleep ${sleeptime[4]}; xterm -hold -title "c4" -e "timeout $streamtime python ../tapas/play.py -m fake -u http://172.16.44.5/bbb/bbbMQ.m3u8 -l $folder_to_log")&
 
-#streamtime_temp=`expr 360 - ${sleeptime[5]}`
-#einh='s'
-#streamtime=$streamtime_temp$einh
 
-streamtime_temp=420
 einh='s'
 streamtime=$streamtime_temp$einh
 
 (sleep ${sleeptime[5]}; xterm -hold -title "c5" -e "timeout $streamtime python ../tapas/play.py -m fake -u http://172.16.44.5/bbb/bbbLQ.m3u8 -l $folder_to_log")&
 
-#streamtime_temp=`expr 360 - ${sleeptime[6]}`
-#einh='s'
-#streamtime=$streamtime_temp$einh
 
-streamtime_temp=420
 einh='s'
 streamtime=$streamtime_temp$einh
 
