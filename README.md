@@ -10,6 +10,14 @@ For prerequisites concerning the applied Tapas player, please see the according 
 The provided entities are deployed within our [testbed](https://github.com/lsinfo3/App-Net/blob/master/BACKGROUND.md) as follows:
 ![alt_text](https://github.com/lsinfo3/App-Net/blob/master/illustrations/deployment.PNG)
 
+# Measurement Setup
+To start the tapas instances, message broker, and policy manager, run the startExperiments.sh script. 
+The otption -m indicates the mechanism which shall be applied (spm | qoeff | nade | baseline).
+The option -b indicates the bandwidth pattern (static | alternating | sawtooth). 
+The possibility to identify an experiment is given by the flag -i. 
+```
+$ bash startExperiment.sh -m qoeff -b static -i exp_1
+```
 
 
 
