@@ -29,8 +29,8 @@ $ bash beReady.sh
 ### Host3
 Host 3 acts as a router. 
 On this machines, several tasks are performed. 
-*We use the tool TraSh for traffic shaping to limit the bandwidth and simulate a bottleneck link
-*TraSh is also used for all network control actions, e.g. bandwdith reservation, flow prioritization
+* We use the tool TraSh for traffic shaping to limit the bandwidth and simulate a bottleneck link
+* TraSh is also used for all network control actions, e.g. bandwdith reservation, flow prioritization
 
 
 
