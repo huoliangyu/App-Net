@@ -38,3 +38,5 @@ To start an experiment, please run the script startExperiments_router.sh. First 
 ```
 $ bash startExperiment_router.sh -m qoeff -b alternating -h 3000 -l 1000 -i exp_1
 ```
+### Content Server
+As content server, we use a machine hosting an Apache Server. The server stores several representations of the video Big Buck Bunny.
