@@ -36,7 +36,7 @@ On this machines, several tasks are performed.
 
 To start an experiment, please run the script startExperiments_router.sh. First of all, it limits the bandwidth. The flag -b denotes the bandwidth pattern (static | alternating | sawtooth). The flags -h and -l indicate the bandwidth limits in kbit/s. If static bandwidth should be applied, please use the same values for -h and -l. Furthermore, this script starts the respective network monitoring and network control. Please specify the applied mechanism by the -m flag. An experiment ID can be defined with -i. The -g option is used to specify the granularity for throughput probes. For example, if -g 3 is used, the throughput since the last three seconds is queried each third second. 
 ```
-$ bash startExperiment_router.sh -m qoeff -b alternating -h 3000 -l 1000 -i exp_1
+$ bash startExperiment_router.sh -m qoeff -b alternating -h 3000 -l 1000 -g 2 -i exp_1
 ```
 ### Content Server
 As content server, we use a machine hosting an Apache Server. The server stores several representations of the video Big Buck Bunny.
