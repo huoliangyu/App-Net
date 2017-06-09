@@ -32,6 +32,6 @@ On this machines, several tasks are performed.
 * We use the tool TraSh for traffic shaping to limit the bandwidth and simulate a bottleneck link
 * TraSh is also used for all network control actions, e.g. bandwdith reservation, flow prioritization
 * Network monitoring is located on this host
-
-
+* The Get Request Fetcher (GRF) is used to detect browsing events (only relevant for multi-application scenarios)
+To start an experiment, please run the script startExperiments_router.sh. First of all, it limits the bandwidth. The flag -p denotes the pattern (static, alternating, sawtooth). The flags -h and -l indicate the bandwidth limits. If static bandwidth should be applied, please use the same values for -h and -l. Furthermore, this script starts the respective network monitoring and network control. Please specify the applied mechanism by the -m flag.  
 
