@@ -14,7 +14,7 @@ folder_to_log=$7
 
 echo "sleeptime in baseline experiments is " ${sleeptime[*]}
 
-xterm -hold -title "zmqZeuch" -e "echo -e \"timeout 450s bash startZMQ.sh $folder_to_log\n\" | nc 192.168.1.2 5678" &	
+xterm -hold -title "messageBroker" -e "echo -e \"timeout 450s bash startZMQ.sh $folder_to_log\n\" | nc 192.168.1.2 5678" &	
 
 sleep 5
 

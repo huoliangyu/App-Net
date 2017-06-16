@@ -13,7 +13,7 @@ sleep_time=1.0
 
 for big_run in `eval echo {1..$num_runs_outer}`;do
 
-        folder_outer='ma_baseline_eval/run_'$big_run
+        folder_outer='baseline/run_'$big_run
 
 	#############################################################################################
 
