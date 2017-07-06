@@ -72,7 +72,7 @@ for big_run in `eval echo {1..$num_runs_outer}`;do
 		if [ "$mechanism" == "baseline" ]
 		then 
 			timeout 450s bash baselineExperiment.bash ${starttime[*]} $complete_folder 
-		elif [ "$mechanisms" == "nade" ]
+		elif [ "$mechanism" == "nade" ]
 		then 
 			timeout 450s bash nadeExperiment.bash ${starttime[*]} ${zmqPort[*]} $complete_folder $bw $bw_usage $complete_folder
 

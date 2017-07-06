@@ -7,6 +7,7 @@ num_runs_inner=40
 num_runs_outer=15
 alpha=0.8
 bw=1440
+f_tp_logging=1
 
 while getopts b:m:i:h:l:g:a option
 do
@@ -59,13 +60,14 @@ for big_run in `eval echo {1..$num_runs_outer}`;do
                 
                 folder_inner='bw_'$bw
                 complete_folder=$folder_outer/$folder_inner
+                mkdir -p $complete_folder
                 
 		if [ "$mechanism" == "baseline" ]
                 then
                         echo "Performing baseline"
                         sudo -S xterm -e "timeout 600s python networkControl.py"& 
                         sleep 5
-                        xterm -hold -e "timeout 600s python networkEntity.py "$complete_folder" "$granularity" "$alpha&
+                        xterm -hold -e "timeout 600s python networkEntity.py "$complete_folder" "$f_tp_logging" "$alpha&
                 
                 elif [ "$mechanism" == "nade" ] 
                 then
@@ -73,34 +75,28 @@ for big_run in `eval echo {1..$num_runs_outer}`;do
                         xterm -hold -e "timeout 450s python networkControl_nade.py $complete_folder $bw"&
                         sleep 5
                         xterm -hold -e "timeout 450s python networkEntity_nade.py "$complete_folder" "$sleep_time" "$alpha&
-                        xterm -hold -e "timeout 450s python networkEntity2_nade.py "$complete_folder" "$sleep_time_fix" "$alpha&
+                        xterm -hold -e "timeout 450s python networkEntity2_nade.py "$complete_folder" "$f_tp_logging" "$alpha&
                 
                 
                 elif [ "$mechanism" == "qoeff" ]
                 then 
                         echo "Performing QoE-FF"
                         xterm -hold -e "timeout 450s python networkControl_mumu.py $complete_folder"&
-                        xterm -hold -e "timeout 450s python networkEntity.py "$complete_folder" "$sleep_time_fix" "$alpha&
+                        sleep 5
+                        xterm -hold -e "timeout 450s python networkEntity.py "$complete_folder" "$f_tp_logging" "$alpha&
                 fi
                 
                 elif [ "$mechanism" == "spm" ]
                 then
                         echo "Performing SPM"
                         xterm -hold -e "timeout 450s python networkControl_petrangeli.py $complete_folder"&"
-                        xterm -hold -e "timeout 450s python networkEntity.py "$complete_folder" "$sleep_time_fix" "$alpha&
+                        sleep 5
+                        xterm -hold -e "timeout 450s python networkEntity.py "$complete_folder" "$f_tp_logging" "$alpha&
                 fi
-                sleep 450;killall xterm
-                sleep 5
-                        
-                echo "Performing baseline"
-                folder_inner='bw_'$bw
-                complete_folder=$folder_outer/$folder_inner
-                mkdir -p $complete_folder
-		sleep 5
-                xterm -hold -e "timeout 450s python networkEntity_petrangeli.py "$complete_folder" "$sleep_time1" "$alpha&
-	        echo $complete_folder
+                xterm -hold -e "timeout 600s python networkMonitoring.py "$complete_folder" "$f_tp_logging" "$alpha&          
                 (sleep 450;killall xterm)
 		sleep 5
+                
         done
 
 	sleep 10
