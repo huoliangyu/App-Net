@@ -1,0 +1,5 @@
+1. start THROTTLING (grenze throttlingconfig.py)
+2. cmd addapp <int(id)> <IP> <PORT> GW1
+3. cmd changebw <id> <obereGrenze(rate)> 1
+
+ 

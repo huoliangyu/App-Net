@@ -1,0 +1,35 @@
+# Configuration of experiments
+
+# The longest possible time until a client starts streaming after experiment start (sec)
+MAX=60
+# The earliest possible time a client can start streaming after experient start (sec)
+MIN=0
+# Each Tapas Client communicates with a dedicated port. Ports are allocated successively,
+# beginning with the defined INITPORT
+INITPORT=9000
+# Number of runs 
+num_runs=30
+
+# Configuration of the mechanisms
+
+# Configuration of Stalling Prevention mechanism
+#############################################################
+# Safety margin for estimated download time
+dt_margin=0.05
+# Maximum number of consecutive prioritizations per client
+maxConsecutivePrio=5
+
+# Configuration of Network Assisted DASH Fairness Enhancement
+#############################################################
+# Share of bandwidth that is considered as available 
+bw_usage=0.95
+
+# Configuration of Quality of Experience Fairness Framework 
+##########################################################
+# We consider two mechanisms to monitor the availabel 
+# bandwidth when using QoE-FF 
+# a) network-based: we regularly ask the network entity 
+# about current throughput
+# b) application-based: all client's regularly send their
+# throughput estimations to the PM 
+nm_monitoring_qoeff='application'

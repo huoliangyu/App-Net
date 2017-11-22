@@ -1,0 +1,18 @@
+import zmq
+
+from TapasPlayer import setPrio
+context = zmq.Context()
+socket = context.socket(zmq.SUB)
+print("Tapas Player connection with zmq-Entity")
+socket.connect("tcp://localhost:4444")
+listenTo="4"
+if isinstance(listenTo, bytes):
+    listenTo = listenTo.decode('ascii')
+    socket.setsockopt_string(zmq.SUBSCRIBE, listenTo)
+
+while True:
+	string_received = socket.recv_string()
+	listenTo, priostat = string_received.split()
+	setPrio(int(float(priostat)))
+	print("UPDATED PRIO FLAG")
+		

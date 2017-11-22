@@ -1,0 +1,115 @@
+#!/usr/bin/python
+
+import logging
+import socket
+import threading
+import SocketServer
+import time
+import re
+
+logging.basicConfig(level=logging.DEBUG, \
+        format='%(name)s: %(message)s', \
+        )
+
+class ThreadedTCPServer(SocketServer.ThreadingTCPServer):
+    """
+    Constructor:
+    non-optional parameters:
+    ip
+    port
+    handler
+    optional parameters:
+    client
+    """
+
+    def __init__(self, ip, port, handler, client=None):
+        self.logger = logging.getLogger('ThreadedTCPServer')
+        self.logger.debug('__init__')
+
+        # Set ip, port and handler
+        self.ip = ip
+        self.port = port
+        self.handler = handler
+        # It is necessary to set allow_reuse_address before binding the server
+        self.allow_reuse_address = True
+        # bind the server
+        SocketServer.ThreadingTCPServer.__init__(self, (self.ip, self.port), \
+                self.handler)
+        # set optional parameters
+        if client != None:
+            self.client = client
+        else:
+            self.client = None
+
+class TCPServerRequestHandlerStream(SocketServer.StreamRequestHandler):
+    """
+    look docs.python.org/library/socketserver.html for further
+    instructions
+    """
+
+    #def __init__(self):
+    #    SocketServer.StreamRequestHandler.__init__(self)
+
+    def handle(self):
+        """
+        Handle method starts mainloop to handle all incoming requests.
+        """
+        self.setRegexPattern()
+        self.running = True
+        self.addr = self.client_address[0]
+
+        print "[%s] Verbindung hergestellt" \
+                % (self.addr) 
+        self.mainLoop()
+        print "[%s] Left tcp server request handler stream!" % (self.addr)
+        print "[%s] Connection to client closed and thread execution terminated!" % (self.addr)
+
+    def mainLoop(self):
+        """
+        Decode all incoming requests.
+        """
+        while self.running:
+            try:
+                self.data = self.rfile.readline().strip()
+
+                matchQuit = self.quitPattern.match(self.data)
+                matchStop = self.stopPattern.match(self.data)
+
+                if matchQuit:
+                    print "[%s] Verbindung geschlossen" % self.addr
+                    
+                    self.running = False
+                elif self.data == "":
+                    print "[%s] Verbindung geschlossen" % self.addr
+                    
+                    self.running = False
+                elif matchStop:   
+                    print "[%s] StopTraSh called!"
+
+                    self.running = False
+                    self.server.client.executeCmd("StopTraSh")
+                else:
+                    print "[%s] %s" % (self.addr, self.data)
+                    
+                    self.wfile.write("TraSh says: Yeah, Ich habe Daten bekommen!\n")
+                    if self.server.client:
+			print "data: %s" %self.data
+			asd = self.server.client.executeCmd(self.data)
+			print "lala: %s" %asd
+                        returnMessage = "TraSh says:\n" + \
+                                self.server.client.executeCmd(self.data)
+                        returnMessage += '\n'
+                        self.wfile.write(returnMessage)
+            except socket.error:
+                print "[%s] Socket error happened. No Connection to the client!" % (self.addr)
+                self.running = False
+            except IOError:
+                print "[%s] Client abnormally interrupted connection!" % (self.addr)
+                self.running = False
+
+    def setRegexPattern(self):
+        """
+        Set all necessary decoder for the commands
+        """
+        self.quitPattern = re.compile(r'quit', re.I)
+        self.stopPattern = re.compile(r'stopTrash', re.I)

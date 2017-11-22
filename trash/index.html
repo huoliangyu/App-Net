@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<!--[if IE 6]> <html id="ie6" lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec" > <![endif]-->
+<!--[if IE 7]> <html id="ie7" lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec" > <![endif]-->
+<!--[if IE 8]> <html id="ie8" lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec" > <![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)]><!--> <html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec"> 
+<head>
+<meta charset="UTF-8" />
+<script src="/cdn-cgi/apps/head/mVibN2-vWsSztwtHWc7w1Z-j9Fg.js"></script><link rel="pingback" href="https://linuxaria.com/xmlrpc.php" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
+<!--[if lt IE 9]>
+	<script src="https://cdn.linuxaria.com/wp-content/themes/suffusion/scripts/html5.js" type="text/javascript"></script>
+	<![endif]-->
+<title>Linuxaria - Tutto su GNU/Linux ed Open source</title>
+
+<link rel="author" href="https://plus.google.com/u/1/101727609700016666852" />
+<link rel="publisher" href="https://plus.google.com/u/1/101727609700016666852" />
+<meta name="description" content="Blog su Linux, Technology e tutto quello che è relativo all&#039;Open source. Ci sono news,tutorial ed howto su shell,bash e molti ambienti desktop." />
+<meta name="keywords" content="alias,continuos integration,ghost,infrastructure,jenkins,paas,ports,home automation,operating systems,smartphone,vivint sky app,git,git lfs,git-annex,large files,vcs,backup,computers,encryption,security,simple software,virus,installation,linux,mint,rosa" />
+<script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "WebSite",		  "name": "Linuxaria",        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://linuxaria.com/?s={search_term}",
+          "query-input": "required name=search_term"
+        },		  "url": "https://linuxaria.com/"
+        }
+</script>
+<link rel='next' href='https://linuxaria.com/page/2' />
+<link rel="canonical" href="https://linuxaria.com/" />
+<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-17850046-1', 'auto');
+			ga('set', 'anonymizeIp', true);
+			ga('send', 'pageview');
+			</script>
+
+<link rel='dns-prefetch' href='//assets.swarmcdn.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Linuxaria &raquo; Feed" href="https://linuxaria.com/feed" />
+<link rel="alternate" type="application/rss+xml" title="Linuxaria &raquo; Comments Feed" href="https://linuxaria.com/comments/feed" />
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"wpemoji":"https:\/\/linuxaria.com\/wp-includes\/js\/wp-emoji.js?ver=4.7.6","twemoji":"https:\/\/linuxaria.com\/wp-includes\/js\/twemoji.js?ver=4.7.6"}};
+			( function( window, document, settings ) {
+	var src, ready, ii, tests;
+
+	/*
+	 * Create a canvas element for testing native browser support
+	 * of emoji.
+	 */
+	var canvas = document.createElement( 'canvas' );
+	var context = canvas.getContext && canvas.getContext( '2d' );
+
+	/**
+	 * Detect if the browser supports rendering emoji or flag emoji. Flag emoji are a single glyph
+	 * made of two characters, so some browsers (notably, Firefox OS X) don't support them.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param type {String} Whether to test for support of "flag" or "emoji4" emoji.
+	 * @return {Boolean} True if the browser can render emoji, false if it cannot.
+	 */
+	function browserSupportsEmoji( type ) {
+		var stringFromCharCode = String.fromCharCode,
+			flag, flag2, technologist, technologist2;
+
+		if ( ! context || ! context.fillText ) {
+			return false;
+		}
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, canvas.width, canvas.height );
+
+		/*
+		 * Chrome on OS X added native emoji rendering in M41. Unfortunately,
+		 * it doesn't work when the font is bolder than 500 weight. So, we
+		 * check for bold rendering support to avoid invisible emoji in Chrome.
+		 */
+		context.textBaseline = 'top';
+		context.font = '600 32px Arial';
+
+		switch ( type ) {
+			case 'flag':
+				/*
+				 * This works because the image will be one of three things:
+				 * - Two empty squares, if the browser doesn't render emoji
+				 * - Two squares with 'U' and 'N' in them, if the browser doesn't render flag emoji
+				 * - The United Nations flag
+				 *
+				 * The first two will encode to small images (1-2KB data URLs), the third will encode
+				 * to a larger image (4-5KB data URL).
+				 */
+				context.fillText( stringFromCharCode( 55356, 56826, 55356, 56819 ), 0, 0 );
+				if ( canvas.toDataURL().length < 3000 ) {
+					return false;
+				}
+
+				context.clearRect( 0, 0, canvas.width, canvas.height );
+
+				/*
+				 * Test for rainbow flag compatibility. As the rainbow flag was added out of sequence with
+				 * the usual Unicode release cycle, some browsers support it, and some don't, even if their
+				 * Unicode support is up to date.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (white flag emoji + rainbow emoji).
+				 */
+				context.fillText( stringFromCharCode( 55356, 57331, 65039, 8205, 55356, 57096 ), 0, 0 );
+				flag = canvas.toDataURL();
+
+				context.clearRect( 0, 0, canvas.width, canvas.height );
+
+				context.fillText( stringFromCharCode( 55356, 57331, 55356, 57096 ), 0, 0 );
+				flag2 = canvas.toDataURL();
+
+				return flag !== flag2;
+			case 'emoji4':
+				/*
+				 * Emoji 4 has the best technologists. So does WordPress!
+				 *
+				 * To test for support, try to render a new emoji (woman technologist: medium skin tone),
+				 * then compare it to how it would look if the browser doesn't render it correctly
+				 * (woman technologist: medium skin tone + personal computer).
+				 */
+				context.fillText( stringFromCharCode( 55357, 56425, 55356, 57341, 8205, 55357, 56507), 0, 0 );
+				technologist = canvas.toDataURL();
+
+				context.clearRect( 0, 0, canvas.width, canvas.height );
+
+				context.fillText( stringFromCharCode( 55357, 56425, 55356, 57341, 55357, 56507), 0, 0 );
+				technologist2 = canvas.toDataURL();
+
+				return technologist !== technologist2;
+		}
+
+		return false;
+	}
+
+	function addScript( src ) {
+		var script = document.createElement( 'script' );
+
+		script.src = src;
+		script.defer = script.type = 'text/javascript';
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}
+
+	tests = Array( 'flag', 'emoji4' );
+
+	settings.supports = {
+		everything: true,
+		everythingExceptFlag: true
+	};
+
+	for( ii = 0; ii < tests.length; ii++ ) {
+		settings.supports[ tests[ ii ] ] = browserSupportsEmoji( tests[ ii ] );
+
+		settings.supports.everything = settings.supports.everything && settings.supports[ tests[ ii ] ];
+
+		if ( 'flag' !== tests[ ii ] ) {
+			settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && settings.supports[ tests[ ii ] ];
+		}
+	}
+
+	settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && ! settings.supports.flag;
+
+	settings.DOMReady = false;
+	settings.readyCallback = function() {
+		settings.DOMReady = true;
+	};
+
+	if ( ! settings.supports.everything ) {
+		ready = function() {
+			settings.readyCallback();
+		};
+
+		if ( document.addEventListener ) {
+			document.addEventListener( 'DOMContentLoaded', ready, false );
+			window.addEventListener( 'load', ready, false );
+		} else {
+			window.attachEvent( 'onload', ready );
+			document.attachEvent( 'onreadystatechange', function() {
+				if ( 'complete' === document.readyState ) {
+					settings.readyCallback();
+				}
+			} );
+		}
+
+		src = settings.source || {};
+
+		if ( src.concatemoji ) {
+			addScript( src.concatemoji );
+		} else if ( src.wpemoji && src.twemoji ) {
+			addScript( src.twemoji );
+			addScript( src.wpemoji );
+		}
+	}
+
+} )( window, document, window._wpemojiSettings );
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css' href='https://cdn.linuxaria.com/wp-content/plugins/yet-another-related-posts-plugin/style/widget.css?ver=4.7.6' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css' href='https://cdn.linuxaria.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.7' type='text/css' media='all' />
+<link rel='stylesheet' id='cookielawinfo-style-css' href='https://cdn.linuxaria.com/wp-content/plugins/cookie-law-info/css/cli-style.css?ver=1.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css' href='https://cdn.linuxaria.com/wp-content/plugins/wp-syntax/css/wp-syntax.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='suffusion-theme-css' href='https://cdn.linuxaria.com/wp-content/themes/suffusion/style.css?ver=4.4.9' type='text/css' media='all' />
+<link rel='stylesheet' id='suffusion-theme-skin-1-css' href='https://cdn.linuxaria.com/wp-content/themes/suffusion/skins/light-theme-orange/skin.css?ver=4.4.9' type='text/css' media='all' />
+<!--[if !IE]>--><link rel='stylesheet' id='suffusion-rounded-css' href='https://cdn.linuxaria.com/wp-content/themes/suffusion/rounded-corners.css?ver=4.4.9' type='text/css' media='all' />
+
+<!--[if gt IE 8]><link rel='stylesheet' id='suffusion-rounded-css'  href='https://cdn.linuxaria.com/wp-content/themes/suffusion/rounded-corners.css?ver=4.4.9' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 8]><link rel='stylesheet' id='suffusion-ie-css'  href='https://cdn.linuxaria.com/wp-content/themes/suffusion/ie-fix.css?ver=4.4.9' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='addthis_all_pages-css' href='https://cdn.linuxaria.com/wp-content/plugins/addthis-all/frontend/build/addthis_wordpress_public.min.css?ver=4.7.6' type='text/css' media='all' />
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js?ver=1.7.1'></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/scriptaculous.js?ver=1.9.0'></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/effects.js?ver=1.9.0'></script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-content/plugins/lightbox-2/lightbox.js?ver=1.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var swarmParams = {"swarmcdnkey":"fc1b56c1-42ed-4db3-b7ae-abea3de74c5d","swarmvideoscan":"false","swarmimagescan":"false","swarmiframe":"\/wp-content\/uploads\/swarmcdniframe.html","swarmadvancedparams":"var swarmcors=true;"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-content/plugins/swarm-cdn/js/swarmcdn.js' data-cfasync='false'></script>
+<script type='text/javascript' src='https://assets.swarmcdn.com/swarmdetect.js' data-cfasync='false'></script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-includes/js/jquery/jquery-migrate.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-content/plugins/cookie-law-info/js/cookielawinfo.js?ver=1.5.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var Suffusion_JS = {"wrapper_width_type_page_template_1l_sidebar_php":"fixed","wrapper_max_width_page_template_1l_sidebar_php":"1200","wrapper_min_width_page_template_1l_sidebar_php":"600","wrapper_orig_width_page_template_1l_sidebar_php":"75","wrapper_width_type_page_template_1r_sidebar_php":"fixed","wrapper_max_width_page_template_1r_sidebar_php":"1200","wrapper_min_width_page_template_1r_sidebar_php":"600","wrapper_orig_width_page_template_1r_sidebar_php":"75","wrapper_width_type_page_template_1l1r_sidebar_php":"fixed","wrapper_max_width_page_template_1l1r_sidebar_php":"1200","wrapper_min_width_page_template_1l1r_sidebar_php":"600","wrapper_orig_width_page_template_1l1r_sidebar_php":"75","wrapper_width_type_page_template_2l_sidebars_php":"fixed","wrapper_max_width_page_template_2l_sidebars_php":"1200","wrapper_min_width_page_template_2l_sidebars_php":"600","wrapper_orig_width_page_template_2l_sidebars_php":"75","wrapper_width_type_page_template_2r_sidebars_php":"fixed","wrapper_max_width_page_template_2r_sidebars_php":"1200","wrapper_min_width_page_template_2r_sidebars_php":"600","wrapper_orig_width_page_template_2r_sidebars_php":"75","wrapper_width_type":"fluid","wrapper_max_width":"1600","wrapper_min_width":"800","wrapper_orig_width":"98","wrapper_width_type_page_template_no_sidebars_php":"fluid","wrapper_max_width_page_template_no_sidebars_php":"1600","wrapper_min_width_page_template_no_sidebars_php":"800","wrapper_orig_width_page_template_no_sidebars_php":"98","suf_featured_interval":"6000","suf_featured_transition_speed":"1000","suf_featured_fx":"fade","suf_featured_pause":"Pause","suf_featured_resume":"Resume","suf_featured_sync":"0","suf_featured_pager_style":"numbers","suf_nav_delay":"500","suf_nav_effect":"fade","suf_navt_delay":"500","suf_navt_effect":"fade","suf_jq_masonry_enabled":"disabled","suf_fix_aspect_ratio":"preserve","suf_show_drop_caps":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-content/themes/suffusion/scripts/suffusion.js?ver=4.4.9'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://linuxaria.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://cdn.linuxaria.com/wp-includes/wlwmanifest.xml" />
+
+<link rel="stylesheet" href="https://cdn.linuxaria.com/wp-content/plugins/graceful-pull-quotes/resources/jspullquotes-core.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.linuxaria.com/wp-content/plugins/graceful-pull-quotes/styles/Modern.css" type="text/css" />
+<script type="text/javascript">
+		var jspq_options = new Array("1", "1", "right", "1", "1", "aside", "pullquote", "pullquote pqRight");
+	</script>
+<script type="text/javascript" src="https://cdn.linuxaria.com/wp-content/plugins/graceful-pull-quotes/resources/jspullquotes.js"></script>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    document.write('<link rel="stylesheet" href="https://cdn.linuxaria.com/wp-content/plugins/lightbox-2/Themes/Black/lightbox.css" type="text/css" media="screen" />');
+    //]]>
+    </script>
+
+<style type="text/css">
+.qtranxs_flag_en {background-image: url(https://cdn.linuxaria.com/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+.qtranxs_flag_it {background-image: url(https://cdn.linuxaria.com/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+</style>
+<link hreflang="en" href="https://linuxaria.com/?lang=en" rel="alternate" />
+<link hreflang="it" href="https://linuxaria.com/?lang=it" rel="alternate" />
+<link hreflang="x-default" href="https://linuxaria.com/" rel="alternate" />
+<meta name="generator" content="qTranslate-X 3.4.6.8" />
+
+
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+
+<script>
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-17850046-1', 'auto');
+
+
+
+
+	ga('set', 'forceSSL', true);
+	ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript" src="https://cdn.linuxaria.com/wp-content/plugins/si-captcha-for-wordpress/captcha/si_captcha.js?ver=1506459393"></script>
+
+<style type="text/css">
+.si_captcha_small { width:175px; height:45px; padding-top:10px; padding-bottom:10px; }
+.si_captcha_large { width:250px; height:60px; padding-top:10px; padding-bottom:10px; }
+img#si_image_com { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_reg { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_log { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_side_login { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_checkout { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_jetpack { border-style:none; margin:0; padding-right:5px; float:left; }
+img#si_image_bbpress_topic { border-style:none; margin:0; padding-right:5px; float:left; }
+.si_captcha_refresh { border-style:none; margin:0; vertical-align:bottom; }
+div#si_captcha_input { display:block; padding-top:15px; padding-bottom:5px; }
+label#si_captcha_code_label { margin:0; }
+input#si_captcha_code_input { width:65px; }
+p#si_captcha_code { clear: left; padding-top:10px; }
+.si-captcha-jetpack-error { color:#DC3232; }
+</style>
+
+
+<style type="text/css">
+	/* <![CDATA[ */
+/* 09/26/2017 20:56 */
+.page-template-1l-sidebar-php #wrapper { width: 1000px; max-width: 1000px; min-width: 1000px; }
+
+.page-template-1l-sidebar-php #container { padding-left: 275px; padding-right: 0px; }
+.page-template-1l-sidebar-php #main-col {	width: 725px; }
+#ie6 .page-template-1l-sidebar-php #main-col { width: 695px }
+.page-template-1l-sidebar-php #nav-top, .page-template-1l-sidebar-php #top-bar-right-spanel { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-1l-sidebar-php #nav-top .col-control, .page-template-1l-sidebar-php #top-bar-right-spanel .col-control { width: 1000px }
+.page-template-1l-sidebar-php #widgets-above-header .col-control { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-1l-sidebar-php #nav .col-control { width: 1000px }
+
+.page-template-1l-sidebar-php .postdata .category {
+	max-width: 450px;
+}
+.page-template-1l-sidebar-php .tags {
+	max-width: 450px;
+}
+.page-template-1l-sidebar-php #sidebar, .page-template-1l-sidebar-php #sidebar-b, .page-template-1l-sidebar-php #sidebar-shell-1 {
+	width: 260px;
+}
+.page-template-1l-sidebar-php #sidebar.flattened, .page-template-1l-sidebar-php #sidebar-b.flattened {
+	width: 258px;
+}
+.page-template-1l-sidebar-php #sidebar-shell-1 {
+	margin-left: -100%;
+	margin-right: 15px;
+	left: auto;
+	right: 275px;
+}
+.page-template-1l-sidebar-php #sidebar-container { width: 275px; }
+.page-template-1l-sidebar-php .sidebar-container-left { right: 275px; }
+.page-template-1l-sidebar-php .sidebar-container-right { margin-right: -275px; }
+.page-template-1l-sidebar-php .sidebar-container-left #sidebar-wrap { right: auto; }
+.page-template-1l-sidebar-php #wsidebar-top, .page-template-1l-sidebar-php #wsidebar-bottom { width: 273px; }
+.page-template-1l-sidebar-php #sidebar-wrap {
+	width: 290px;
+	left: auto;
+	right: auto;
+}
+#ie6 .page-template-1l-sidebar-php #sidebar-wrap {
+	left: auto;
+	right: auto;
+}
+.page-template-1l-sidebar-php .sidebar-wrap-left {
+	margin-left: -100%;
+}
+.page-template-1l-sidebar-php .sidebar-wrap-right {
+	margin-right: -290px;
+}
+#ie6 .page-template-1l-sidebar-php #sidebar, #ie6 .page-template-1l-sidebar-php #sidebar-b, #ie6 .page-template-1l-sidebar-php #sidebar-shell-1 {
+	width: 252px;
+}
+#ie6 .page-template-1l-sidebar-php #sidebar-shell-1 {
+}
+#ie6 .page-template-1l-sidebar-php #sidebar-container {
+	width: 265px;
+}
+
+.page-template-1l-sidebar-php .tab-box {
+	width: 260px;
+}
+.page-template-1r-sidebar-php #wrapper { width: 1000px; max-width: 1000px; min-width: 1000px; }
+
+.page-template-1r-sidebar-php #container { padding-left: 0px; padding-right: 275px; }
+.page-template-1r-sidebar-php #main-col {	width: 725px; }
+#ie6 .page-template-1r-sidebar-php #main-col { width: 695px }
+.page-template-1r-sidebar-php #nav-top, .page-template-1r-sidebar-php #top-bar-right-spanel { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-1r-sidebar-php #nav-top .col-control, .page-template-1r-sidebar-php #top-bar-right-spanel .col-control { width: 1000px }
+.page-template-1r-sidebar-php #widgets-above-header .col-control { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-1r-sidebar-php #nav .col-control { width: 1000px }
+
+.page-template-1r-sidebar-php .postdata .category {
+	max-width: 450px;
+}
+.page-template-1r-sidebar-php .tags {
+	max-width: 450px;
+}
+.page-template-1r-sidebar-php #sidebar, .page-template-1r-sidebar-php #sidebar-b, .page-template-1r-sidebar-php #sidebar-shell-1 {
+	width: 260px;
+}
+.page-template-1r-sidebar-php #sidebar.flattened, .page-template-1r-sidebar-php #sidebar-b.flattened {
+	width: 258px;
+}
+.page-template-1r-sidebar-php #sidebar-shell-1 {
+	margin-left: 15px;
+	margin-right: -275px;
+	left: auto;
+	right: auto;
+}
+.page-template-1r-sidebar-php #sidebar-container { width: 275px; }
+.page-template-1r-sidebar-php .sidebar-container-left { right: 275px; }
+.page-template-1r-sidebar-php .sidebar-container-right { margin-right: -275px; }
+.page-template-1r-sidebar-php .sidebar-container-left #sidebar-wrap { right: auto; }
+.page-template-1r-sidebar-php #wsidebar-top, .page-template-1r-sidebar-php #wsidebar-bottom { width: 273px; }
+.page-template-1r-sidebar-php #sidebar-wrap {
+	width: 290px;
+	left: auto;
+	right: auto;
+}
+#ie6 .page-template-1r-sidebar-php #sidebar-wrap {
+	left: auto;
+	right: auto;
+}
+.page-template-1r-sidebar-php .sidebar-wrap-left {
+	margin-left: -100%;
+}
+.page-template-1r-sidebar-php .sidebar-wrap-right {
+	margin-right: -290px;
+}
+#ie6 .page-template-1r-sidebar-php #sidebar, #ie6 .page-template-1r-sidebar-php #sidebar-b, #ie6 .page-template-1r-sidebar-php #sidebar-shell-1 {
+	width: 252px;
+}
+#ie6 .page-template-1r-sidebar-php #sidebar-shell-1 {
+}
+#ie6 .page-template-1r-sidebar-php #sidebar-container {
+	width: 265px;
+}
+
+.page-template-1r-sidebar-php .tab-box {
+	width: 260px;
+}
+.page-template-1l1r-sidebar-php #wrapper { width: 1000px; max-width: 1000px; min-width: 1000px; }
+
+.page-template-1l1r-sidebar-php #container { padding-left: 185px; padding-right: 185px; }
+.page-template-1l1r-sidebar-php #main-col {	width: 630px; }
+#ie6 .page-template-1l1r-sidebar-php #main-col { width: 600px }
+.page-template-1l1r-sidebar-php #nav-top, .page-template-1l1r-sidebar-php #top-bar-right-spanel { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-1l1r-sidebar-php #nav-top .col-control, .page-template-1l1r-sidebar-php #top-bar-right-spanel .col-control { width: 1000px }
+.page-template-1l1r-sidebar-php #widgets-above-header .col-control { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-1l1r-sidebar-php #nav .col-control { width: 1000px }
+
+.page-template-1l1r-sidebar-php .postdata .category {
+	max-width: 355px;
+}
+.page-template-1l1r-sidebar-php .tags {
+	max-width: 355px;
+}
+.page-template-1l1r-sidebar-php #sidebar, .page-template-1l1r-sidebar-php #sidebar-b, .page-template-1l1r-sidebar-php #sidebar-shell-1 {
+	width: 170px;
+}
+.page-template-1l1r-sidebar-php #sidebar.flattened, .page-template-1l1r-sidebar-php #sidebar-b.flattened {
+	width: 168px;
+}
+.page-template-1l1r-sidebar-php #sidebar-shell-1 {
+	margin-left: 15px;
+	margin-right: -185px;
+	left: auto;
+	right: auto;
+}
+.page-template-1l1r-sidebar-php #sidebar-2, .page-template-1l1r-sidebar-php #sidebar-2-b, .page-template-1l1r-sidebar-php #sidebar-shell-2 {
+	width: 170px;
+	}
+.page-template-1l1r-sidebar-php #sidebar-2.flattened, .page-template-1l1r-sidebar-php #sidebar-2-b.flattened {
+	width: 168px;
+}
+.page-template-1l1r-sidebar-php #sidebar-shell-2 {
+	margin-left: -100%;
+	margin-right: 0px;
+	left: auto;
+	right: 185px;
+}
+
+.page-template-1l1r-sidebar-php #sidebar-container { width: 185px; }
+.page-template-1l1r-sidebar-php .sidebar-container-left { right: 185px; }
+.page-template-1l1r-sidebar-php .sidebar-container-right { margin-right: -185px; }
+.page-template-1l1r-sidebar-php .sidebar-container-left #sidebar-wrap { right: auto; }
+.page-template-1l1r-sidebar-php #wsidebar-top, .page-template-1l1r-sidebar-php #wsidebar-bottom { width: 353px; }
+.page-template-1l1r-sidebar-php #sidebar-wrap {
+	width: 370px;
+	left: auto;
+	right: auto;
+}
+#ie6 .page-template-1l1r-sidebar-php #sidebar-wrap {
+	left: auto;
+	right: auto;
+}
+.page-template-1l1r-sidebar-php .sidebar-wrap-left {
+	margin-left: -100%;
+}
+.page-template-1l1r-sidebar-php .sidebar-wrap-right {
+	margin-right: -370px;
+}
+#ie6 .page-template-1l1r-sidebar-php #sidebar, #ie6 .page-template-1l1r-sidebar-php #sidebar-b, #ie6 .page-template-1l1r-sidebar-php #sidebar-shell-1 {
+	width: 162px;
+}
+#ie6 .page-template-1l1r-sidebar-php #sidebar-shell-1 {
+}
+#ie6 .page-template-1l1r-sidebar-php #sidebar-2, #ie6 .page-template-1l1r-sidebar-php #sidebar-2-b, #ie6 .page-template-1l1r-sidebar-php #sidebar-shell-2 {
+	width: 162px;
+}
+#ie6 .page-template-1l1r-sidebar-php #sidebar-shell-2 {
+	left: 200px;
+	right: 185px;
+}
+
+#ie6 .page-template-1l1r-sidebar-php #sidebar-container {
+	width: 175px;
+}
+
+.page-template-1l1r-sidebar-php .tab-box {
+	width: 170px;
+}
+.page-template-2l-sidebars-php #wrapper { width: 1000px; max-width: 1000px; min-width: 1000px; }
+
+.page-template-2l-sidebars-php #container { padding-left: 370px; padding-right: 0px; }
+.page-template-2l-sidebars-php #main-col {	width: 630px; }
+#ie6 .page-template-2l-sidebars-php #main-col { width: 600px }
+.page-template-2l-sidebars-php #nav-top, .page-template-2l-sidebars-php #top-bar-right-spanel { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-2l-sidebars-php #nav-top .col-control, .page-template-2l-sidebars-php #top-bar-right-spanel .col-control { width: 1000px }
+.page-template-2l-sidebars-php #widgets-above-header .col-control { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-2l-sidebars-php #nav .col-control { width: 1000px }
+
+.page-template-2l-sidebars-php .postdata .category {
+	max-width: 355px;
+}
+.page-template-2l-sidebars-php .tags {
+	max-width: 355px;
+}
+.page-template-2l-sidebars-php #sidebar, .page-template-2l-sidebars-php #sidebar-b, .page-template-2l-sidebars-php #sidebar-shell-1 {
+	width: 170px;
+}
+.page-template-2l-sidebars-php #sidebar.flattened, .page-template-2l-sidebars-php #sidebar-b.flattened {
+	width: 168px;
+}
+.page-template-2l-sidebars-php #sidebar-shell-1 {
+	margin-left: 0px;
+	margin-right: 0px;
+	left: auto;
+	right: auto;
+}
+.page-template-2l-sidebars-php #sidebar-2, .page-template-2l-sidebars-php #sidebar-2-b, .page-template-2l-sidebars-php #sidebar-shell-2 {
+	width: 170px;
+	}
+.page-template-2l-sidebars-php #sidebar-2.flattened, .page-template-2l-sidebars-php #sidebar-2-b.flattened {
+	width: 168px;
+}
+.page-template-2l-sidebars-php #sidebar-shell-2 {
+	margin-left: 15px;
+	margin-right: -185px;
+	left: auto;
+	right: auto;
+}
+
+.page-template-2l-sidebars-php #sidebar-container { width: 370px; }
+.page-template-2l-sidebars-php .sidebar-container-left { right: 370px; }
+.page-template-2l-sidebars-php .sidebar-container-right { margin-right: -370px; }
+.page-template-2l-sidebars-php .sidebar-container-left #sidebar-wrap { right: auto; }
+.page-template-2l-sidebars-php #wsidebar-top, .page-template-2l-sidebars-php #wsidebar-bottom { width: 353px; }
+.page-template-2l-sidebars-php #sidebar-wrap {
+	width: 370px;
+	left: auto;
+	right: 370px;
+}
+#ie6 .page-template-2l-sidebars-php #sidebar-wrap {
+	left: auto;
+	right: 200px;
+}
+.page-template-2l-sidebars-php .sidebar-wrap-left {
+	margin-left: -100%;
+}
+.page-template-2l-sidebars-php .sidebar-wrap-right {
+	margin-right: -370px;
+}
+#ie6 .page-template-2l-sidebars-php #sidebar, #ie6 .page-template-2l-sidebars-php #sidebar-b, #ie6 .page-template-2l-sidebars-php #sidebar-shell-1 {
+	width: 162px;
+}
+#ie6 .page-template-2l-sidebars-php #sidebar-shell-1 {
+}
+#ie6 .page-template-2l-sidebars-php #sidebar-2, #ie6 .page-template-2l-sidebars-php #sidebar-2-b, #ie6 .page-template-2l-sidebars-php #sidebar-shell-2 {
+	width: 162px;
+}
+#ie6 .page-template-2l-sidebars-php #sidebar-shell-2 {
+}
+
+#ie6 .page-template-2l-sidebars-php #sidebar-container {
+	width: 360px;
+}
+
+.page-template-2l-sidebars-php .tab-box {
+	width: 353px;
+}
+.page-template-2r-sidebars-php #wrapper { width: 1000px; max-width: 1000px; min-width: 1000px; }
+
+.page-template-2r-sidebars-php #container { padding-left: 0px; padding-right: 370px; }
+.page-template-2r-sidebars-php #main-col {	width: 630px; }
+#ie6 .page-template-2r-sidebars-php #main-col { width: 600px }
+.page-template-2r-sidebars-php #nav-top, .page-template-2r-sidebars-php #top-bar-right-spanel { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-2r-sidebars-php #nav-top .col-control, .page-template-2r-sidebars-php #top-bar-right-spanel .col-control { width: 1000px }
+.page-template-2r-sidebars-php #widgets-above-header .col-control { width: 1000px; max-width: 1000px; min-width: 1000px; }
+.page-template-2r-sidebars-php #nav .col-control { width: 1000px }
+
+.page-template-2r-sidebars-php .postdata .category {
+	max-width: 355px;
+}
+.page-template-2r-sidebars-php .tags {
+	max-width: 355px;
+}
+.page-template-2r-sidebars-php #sidebar, .page-template-2r-sidebars-php #sidebar-b, .page-template-2r-sidebars-php #sidebar-shell-1 {
+	width: 170px;
+}
+.page-template-2r-sidebars-php #sidebar.flattened, .page-template-2r-sidebars-php #sidebar-b.flattened {
+	width: 168px;
+}
+.page-template-2r-sidebars-php #sidebar-shell-1 {
+	margin-left: 0px;
+	margin-right: 0px;
+	left: auto;
+	right: auto;
+}
+.page-template-2r-sidebars-php #sidebar-2, .page-template-2r-sidebars-php #sidebar-2-b, .page-template-2r-sidebars-php #sidebar-shell-2 {
+	width: 170px;
+	}
+.page-template-2r-sidebars-php #sidebar-2.flattened, .page-template-2r-sidebars-php #sidebar-2-b.flattened {
+	width: 168px;
+}
+.page-template-2r-sidebars-php #sidebar-shell-2 {
+	margin-left: -185px;
+	margin-right: 15px;
+	left: auto;
+	right: auto;
+}
+
+.page-template-2r-sidebars-php #sidebar-container { width: 370px; }
+.page-template-2r-sidebars-php .sidebar-container-left { right: 370px; }
+.page-template-2r-sidebars-php .sidebar-container-right { margin-right: -370px; }
+.page-template-2r-sidebars-php .sidebar-container-left #sidebar-wrap { right: auto; }
+.page-template-2r-sidebars-php #wsidebar-top, .page-template-2r-sidebars-php #wsidebar-bottom { width: 353px; }
+.page-template-2r-sidebars-php #sidebar-wrap {
+	width: 370px;
+	left: auto;
+	right: auto;
+}
+#ie6 .page-template-2r-sidebars-php #sidebar-wrap {
+	left: auto;
+	right: auto;
+}
+.page-template-2r-sidebars-php .sidebar-wrap-left {
+	margin-left: -100%;
+}
+.page-template-2r-sidebars-php .sidebar-wrap-right {
+	margin-right: -370px;
+}
+#ie6 .page-template-2r-sidebars-php #sidebar, #ie6 .page-template-2r-sidebars-php #sidebar-b, #ie6 .page-template-2r-sidebars-php #sidebar-shell-1 {
+	width: 162px;
+}
+#ie6 .page-template-2r-sidebars-php #sidebar-shell-1 {
+}
+#ie6 .page-template-2r-sidebars-php #sidebar-2, #ie6 .page-template-2r-sidebars-php #sidebar-2-b, #ie6 .page-template-2r-sidebars-php #sidebar-shell-2 {
+	width: 162px;
+}
+#ie6 .page-template-2r-sidebars-php #sidebar-shell-2 {
+}
+
+#ie6 .page-template-2r-sidebars-php #sidebar-container {
+	width: 360px;
+}
+
+.page-template-2r-sidebars-php .tab-box {
+	width: 353px;
+}
+ #wrapper { width: 98%; max-width: 1600px; min-width: 800px; }
+
+ #container { padding-left: 0px; padding-right: 280px; }
+ #main-col {	width: 100%; }
+#ie6  #main-col { width: 100% }
+ #nav-top,  #top-bar-right-spanel { width: 98%; max-width: 1600px; min-width: 800px; }
+ #nav-top .col-control,  #top-bar-right-spanel .col-control { width: 100% }
+ #widgets-above-header .col-control { width: 98%; max-width: 1600px; min-width: 800px; }
+ #nav .col-control { width: 100% }
+
+ .postdata .category {
+	max-width: 60%;
+}
+ .tags {
+	max-width: 60%;
+}
+ #sidebar,  #sidebar-b,  #sidebar-shell-1 {
+	width: 265px;
+}
+ #sidebar.flattened,  #sidebar-b.flattened {
+	width: 263px;
+}
+ #sidebar-shell-1 {
+	margin-left: 15px;
+	margin-right: -280px;
+	left: auto;
+	right: auto;
+}
+ #sidebar-container { width: 280px; }
+ .sidebar-container-left { right: 280px; }
+ .sidebar-container-right { margin-right: -280px; }
+ .sidebar-container-left #sidebar-wrap { right: auto; }
+ #wsidebar-top,  #wsidebar-bottom { width: 278px; }
+ #sidebar-wrap {
+	width: 295px;
+	left: auto;
+	right: auto;
+}
+#ie6  #sidebar-wrap {
+	left: auto;
+	right: auto;
+}
+ .sidebar-wrap-left {
+	margin-left: -100%;
+}
+ .sidebar-wrap-right {
+	margin-right: -295px;
+}
+#ie6  #sidebar, #ie6  #sidebar-b, #ie6  #sidebar-shell-1 {
+	width: 257px;
+}
+#ie6  #sidebar-shell-1 {
+	left: 0px;
+}
+#ie6  #sidebar-container {
+	width: 270px;
+}
+
+ .tab-box {
+	width: 265px;
+}
+.page-template-no-sidebars-php #container { padding-left: 0; padding-right: 0; }
+.page-template-no-sidebars-php #main-col {	width: 100%; }
+.suf-mag-headlines {
+	padding-left: 225px;
+}
+.suf-mag-headline-photo-box { width: 225px; right: 225px; }
+.suf-mag-headline-block { width: 100%; }
+#ie6 .suf-mag-headline-block { width: 100%; }
+.suf-mag-headlines { min-height: 250px; height: auto; }
+.suf-mag-excerpt-image {
+	height: 100px;
+}
+.suf-mag-category-image {
+	width: 98%;
+	height: 100px;
+}
+#ie6 .suf-mag-category-image { width: 95%; }
+h2.suf-mag-headlines-title { text-align: center; }
+.search-results .post .date { display: none; }
+.search-results .title-container { padding-left: 0; padding-right: 0; }
+.search-results .post .title { padding-left: 0; }
+
+.postdata .category{ float: left; }
+.post .postdata .comments { float: right; }
+.tags { float: right; text-align: right; }
+.post span.author { float: left; padding-right: 10px;  }
+article.page .postdata .comments { float: right; }
+article.page span.author { float: left; padding-right: 10px;  }
+
+.format-aside h1.posttitle, .format-aside h2.posttitle, .post.format-aside .date { display: none; }
+.format-aside .title-container { padding-left: 0; }
+
+.format-aside .postdata .category{ float: left; }
+.post.format-aside .postdata .comments { float: right; }
+.format-aside .tags { float: right; text-align: right; }
+.format-aside .permalink { float: left; text-align: left; }
+.post.format-aside  span.author { float: left; padding-right: 10px;  }
+
+.format-gallery .postdata .category{ float: left; }
+.post.format-gallery .postdata .comments { float: right; }
+.format-gallery .tags { float: right; text-align: right; }
+.format-gallery .permalink { float: left; text-align: left; }
+.post.format-gallery  span.author { float: left; padding-right: 10px;  }
+
+.format-link .postdata .category{ float: left; }
+.post.format-link .postdata .comments { float: right; }
+.format-link .tags { float: right; text-align: right; }
+.format-link .permalink { float: left; text-align: left; }
+.post.format-link  span.author { float: left; padding-right: 10px;  }
+
+.format-image .postdata .category{ float: left; }
+.post.format-image .postdata .comments { float: right; }
+.format-image .tags { float: right; text-align: right; }
+.format-image .permalink { float: left; text-align: left; }
+.post.format-image  span.author { float: left; padding-right: 10px;  }
+
+.format-quote h1.posttitle, .format-quote h2.posttitle, .post.format-quote .date { display: none; }
+.format-quote .title-container { padding-left: 0; }
+
+.format-quote .postdata .category{ float: left; }
+.post.format-quote .postdata .comments { float: right; }
+.format-quote .tags { float: right; text-align: right; }
+.format-quote .permalink { float: left; text-align: left; }
+.post.format-quote  span.author { float: left; padding-right: 10px;  }
+
+.format-status h1.posttitle, .format-status h2.posttitle, .post.format-status .date { display: none; }
+.format-status .title-container { padding-left: 0; }
+
+.format-status .postdata .category{ float: left; }
+.post.format-status .postdata .comments { float: right; }
+.format-status .tags { float: right; text-align: right; }
+.format-status .permalink { float: left; text-align: left; }
+.post.format-status  span.author { float: left; padding-right: 10px;  }
+
+.format-video .postdata .category{ float: left; }
+.post.format-video .postdata .comments { float: right; }
+.format-video .tags { float: right; text-align: right; }
+.format-video .permalink { float: left; text-align: left; }
+.post.format-video  span.author { float: left; padding-right: 10px;  }
+
+.format-audio .postdata .category{ float: left; }
+.post.format-audio .postdata .comments { float: right; }
+.format-audio .tags { float: right; text-align: right; }
+.format-audio .permalink { float: left; text-align: left; }
+.post.format-audio  span.author { float: left; padding-right: 10px;  }
+
+.format-chat .postdata .category{ float: left; }
+.post.format-chat .postdata .comments { float: right; }
+.format-chat .tags { float: right; text-align: right; }
+.format-chat .permalink { float: left; text-align: left; }
+.post.format-chat  span.author { float: left; padding-right: 10px;  }
+
+#slider, #sliderContent { max-height: 250px; }
+ #slider .left,  #slider .right { height: 250px; max-height: 250px; width: 350px !important; }
+ .sliderImage .top,  .sliderImage .bottom { max-width: none; }
+.sliderImage { height: 250px; }
+.controller-icons #sliderControl { top: -125px; }
+.controller-icons.index-overlaid #sliderControl { top: -110px; }
+ .sliderImage div { background-image: none; background-color: #222222; color: #FFFFFF; }
+ .sliderImage div a { color: #FFFFFF; }
+#featured-posts { border-width: 1px; border-style: solid; }
+#ie6 table.suf-tiles { width: 96% }
+.suf-tile-image { height: 100px; }
+h2.suf-tile-title { text-align: left; }
+#nav-top, #top-bar-right-spanel { margin: 0 auto; }
+#nav ul { text-transform: capitalize; }
+#nav-top ul { text-transform: capitalize; float: left; }
+#widgets-above-header { width: auto; }
+#page-footer .col-control { width: auto; }
+#nav { margin: 0 auto; width: 100%; }
+div.booklisting img, div.bookentry img { width: 108px; height: 160px; }
+div.bookentry .stats { width: 142px; }
+div.bookentry .review { width: -88px; }
+#ie6 div.bookentry .review { width: -108px; }
+col.nr-shelf-slot { width: 25%; }
+#nav .mm-warea {
+	transition: opacity 500ms linear;
+	-moz-transition: opacity 500ms linear;
+	-webkit-transition: opacity 500ms linear;
+	-khtml-transition: opacity 500ms linear;
+}
+
+#nav-top .mm-warea {
+	transition: opacity 500ms linear;
+	-moz-transition: opacity 500ms linear;
+	-webkit-transition: opacity 500ms linear;
+	-khtml-transition: opacity 500ms linear;
+}
+
+.attachment object.audio { width: 300px; height: 30px; }
+.attachment object.application { width: 300px; }
+.attachment object.text { width: 300px; }
+.attachment object.video { width: 300px; height: 225px; }
+.author-info img.avatar { float: left; padding: 5px; }
+.suf-mosaic-thumb-container { margin-left: 50px; margin-right: 50px; }
+.sidebar-wrap-right #sidebar-shell-1 { float: right; margin-left: 0; margin-right: 0;}
+.sidebar-wrap-right #sidebar-shell-2 { float: right; margin-right: 15px; margin-left: 0;}
+.sidebar-wrap-left #sidebar-shell-1 { float: left; margin-left: 0; margin-right: 0;}
+.sidebar-wrap-left #sidebar-shell-2 { float: left; margin-left: 15px; margin-right: 0;}
+.sidebar-container-left #sidebar-wrap { margin-left: 0; margin-right: 0; left: auto; right: auto; }
+.sidebar-container-right #sidebar-wrap { margin-left: 0; margin-right: 0; left: auto; right: auto; }
+#sidebar-container .tab-box { margin-left: 0; margin-right: 0; }
+#sidebar-container.sidebar-container-left { margin-left: -100%; }
+#ie6 #sidebar-container #sidebar-shell-1, #ie6 #sidebar-container #sidebar-shell-2 { left: auto; right: auto; }
+#ie6 .sidebar-container-left #sidebar-wrap, #ie6 .sidebar-container-right #sidebar-wrap { left: auto; right: auto; }
+.postdata .category .icon, .postdata .author .icon, .postdata .tax .icon, .postdata .permalink .icon, .postdata .comments .icon, .postdata .edit .icon, .postdata .line-date .icon,
+.previous-entries .icon, .next-entries .icon, .post-nav .previous .icon, .post-nav .next .icon, h3.comments .icon, #reply-title .icon, input.inside, .exif-button .icon,
+.bookdata .edit .icon, .bookdata .manage .icon, .page-nav-left a, .page-nav-right a, .mosaic-page-nav-right a, .mosaic-page-nav-left a, .mosaic-overlay a span,
+.meta-pullout .category .icon, .meta-pullout .author .icon, .meta-pullout .tax .icon, .meta-pullout .permalink .icon, .meta-pullout .comments .icon, .meta-pullout .edit .icon, .meta-pullout .pullout-date .icon,
+.controller-icons #sliderControl .sliderPrev, .controller-icons #sliderControl .sliderNext, .controller-icons .sliderControl .sliderPrev, .controller-icons .sliderControl .sliderNext, .user-profiles .icon {
+	background-image: url(https://cdn.linuxaria.com/wp-content/themes/suffusion/images/iconset-3.png);
+}
+.postdata .author .icon,.meta-pullout .author .icon,.postdata .line-date .icon,.meta-pullout .pullout-date .icon,.postdata .category .icon,.meta-pullout .category .icon,.postdata .tags .icon,.meta-pullout .tags .icon,.postdata .permalink .icon,.meta-pullout .permalink .icon,.postdata .comments .icon,.meta-pullout .comments .icon,.postdata .edit .icon,.meta-pullout .edit .icon,.postdata .tax .icon,.meta-pullout .tax .icon { display: inline-block; }
+.gallery-container { padding-right: 266px }.gallery-contents { width: 250px }.gallery-contents.left { left: -266px }.gallery-contents.right { margin-right: -266px }
+.blogtitle a { max-width: 100%; width: auto; }
+.blogtitle a img { max-width: 100%; }
+#header { max-width: 100%; }
+@media screen and (max-width: 980px) {
+	#wrapper, .page-template-no-sidebars-php #wrapper, .page-template-1l-sidebar-php #wrapper, .page-template-1r-sidebar-php #wrapper, .page-template-2l-sidebars-php #wrapper, .page-template-2r-sidebars-php #wrapper, .page-template-1l1r-sidebar-php #wrapper {
+		width: 100%;
+		max-width: none;
+		min-width: 0;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#nav-top, #nav .col-control, .page-template-no-sidebars-php #nav-top, .page-template-no-sidebars-php  #nav .col-control, .page-template-1l-sidebar-php #nav-top, .page-template-1l-sidebar-php  #nav .col-control, .page-template-1r-sidebar-php #nav-top, .page-template-1r-sidebar-php  #nav .col-control, .page-template-2l-sidebars-php #nav-top, .page-template-2l-sidebars-php  #nav .col-control, .page-template-2r-sidebars-php #nav-top, .page-template-2r-sidebars-php  #nav .col-control, .page-template-1l1r-sidebar-php #nav-top, .page-template-1l1r-sidebar-php  #nav .col-control {	width: 100%; max-width: none; min-width: 0; }
+
+	#main-col, .page-template-no-sidebars-php #main-col, .page-template-1l-sidebar-php #main-col, .page-template-1r-sidebar-php #main-col, .page-template-2l-sidebars-php #main-col, .page-template-2r-sidebars-php #main-col, .page-template-1l1r-sidebar-php #main-col {
+		width: 100%;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#widgets-above-header .suf-widget-1c, #widgets-above-header .suf-widget-2c, #widgets-above-header .suf-widget-3c, #widgets-above-header .suf-widget-4c, #widgets-above-header .suf-widget-5c, #widgets-above-header .suf-widget-6c, #widgets-above-header .suf-widget-7c, #widgets-above-header .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#header-widgets .suf-widget-1c, #header-widgets .suf-widget-2c, #header-widgets .suf-widget-3c, #header-widgets .suf-widget-4c, #header-widgets .suf-widget-5c, #header-widgets .suf-widget-6c, #header-widgets .suf-widget-7c, #header-widgets .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-1 .suf-widget-1c, #horizontal-outer-widgets-1 .suf-widget-2c, #horizontal-outer-widgets-1 .suf-widget-3c, #horizontal-outer-widgets-1 .suf-widget-4c, #horizontal-outer-widgets-1 .suf-widget-5c, #horizontal-outer-widgets-1 .suf-widget-6c, #horizontal-outer-widgets-1 .suf-widget-7c, #horizontal-outer-widgets-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-2 .suf-widget-1c, #horizontal-outer-widgets-2 .suf-widget-2c, #horizontal-outer-widgets-2 .suf-widget-3c, #horizontal-outer-widgets-2 .suf-widget-4c, #horizontal-outer-widgets-2 .suf-widget-5c, #horizontal-outer-widgets-2 .suf-widget-6c, #horizontal-outer-widgets-2 .suf-widget-7c, #horizontal-outer-widgets-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-1 .suf-widget-1c, #ad-hoc-1 .suf-widget-2c, #ad-hoc-1 .suf-widget-3c, #ad-hoc-1 .suf-widget-4c, #ad-hoc-1 .suf-widget-5c, #ad-hoc-1 .suf-widget-6c, #ad-hoc-1 .suf-widget-7c, #ad-hoc-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-2 .suf-widget-1c, #ad-hoc-2 .suf-widget-2c, #ad-hoc-2 .suf-widget-3c, #ad-hoc-2 .suf-widget-4c, #ad-hoc-2 .suf-widget-5c, #ad-hoc-2 .suf-widget-6c, #ad-hoc-2 .suf-widget-7c, #ad-hoc-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-3 .suf-widget-1c, #ad-hoc-3 .suf-widget-2c, #ad-hoc-3 .suf-widget-3c, #ad-hoc-3 .suf-widget-4c, #ad-hoc-3 .suf-widget-5c, #ad-hoc-3 .suf-widget-6c, #ad-hoc-3 .suf-widget-7c, #ad-hoc-3 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-4 .suf-widget-1c, #ad-hoc-4 .suf-widget-2c, #ad-hoc-4 .suf-widget-3c, #ad-hoc-4 .suf-widget-4c, #ad-hoc-4 .suf-widget-5c, #ad-hoc-4 .suf-widget-6c, #ad-hoc-4 .suf-widget-7c, #ad-hoc-4 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-5 .suf-widget-1c, #ad-hoc-5 .suf-widget-2c, #ad-hoc-5 .suf-widget-3c, #ad-hoc-5 .suf-widget-4c, #ad-hoc-5 .suf-widget-5c, #ad-hoc-5 .suf-widget-6c, #ad-hoc-5 .suf-widget-7c, #ad-hoc-5 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#cl-warea-id-1 .cl-widget, #cl-warea-id-1 .cl-warea-row .cl-widget, #cl-warea-id-1.cl-warea-all .cl-widget, #cl-warea-id-1.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-2 .cl-widget, #cl-warea-id-2 .cl-warea-row .cl-widget, #cl-warea-id-2.cl-warea-all .cl-widget, #cl-warea-id-2.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-3 .cl-widget, #cl-warea-id-3 .cl-warea-row .cl-widget, #cl-warea-id-3.cl-warea-all .cl-widget, #cl-warea-id-3.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-4 .cl-widget, #cl-warea-id-4 .cl-warea-row .cl-widget, #cl-warea-id-4.cl-warea-all .cl-widget, #cl-warea-id-4.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-5 .cl-widget, #cl-warea-id-5 .cl-warea-row .cl-widget, #cl-warea-id-5.cl-warea-all .cl-widget, #cl-warea-id-5.cl-warea-original .cl-widget { width: 100%; }
+	.suf-mag-excerpts .suf-tile-1c, .suf-mag-excerpts .suf-tile-2c, .suf-mag-excerpts .suf-tile-3c, .suf-mag-excerpts .suf-tile-4c, .suf-mag-excerpts .suf-tile-5c, .suf-mag-excerpts .suf-tile-6c, .suf-mag-excerpts .suf-tile-7c, .suf-mag-excerpts .suf-tile-8c { width: 100%; }
+	.suf-mag-categories .suf-tile-1c, .suf-mag-categories .suf-tile-2c, .suf-mag-categories .suf-tile-3c, .suf-mag-categories .suf-tile-4c, .suf-mag-categories .suf-tile-5c, .suf-mag-categories .suf-tile-6c, .suf-mag-categories .suf-tile-7c, .suf-mag-categories .suf-tile-8c { width: 100%; }
+	.suf-tiles .suf-tile-1c, .suf-tiles .suf-tile-2c, .suf-tiles .suf-tile-3c, .suf-tiles .suf-tile-4c, .suf-tiles .suf-tile-5c, .suf-tiles .suf-tile-6c, .suf-tiles .suf-tile-7c, .suf-tiles .suf-tile-8c { width: 100%; }
+.mm-warea { max-width: 180px; }
+.mm-row-equal, .mm-original, .mm-mason { text-align: justify; -ms-text-justify: distribute; text-justify: distribute; }
+.mm-row-equal:after { content: ''; width: 100%; display: inline-block; font-size: 0; line-height: 0 }
+.mm-warea .mm-widget { float: left; max-width: 160px; width: 100%; }
+}
+@media screen and (max-width: 650px) {
+	#wrapper, .page-template-no-sidebars-php #wrapper, .page-template-1l-sidebar-php #wrapper, .page-template-1r-sidebar-php #wrapper, .page-template-2l-sidebars-php #wrapper, .page-template-2r-sidebars-php #wrapper, .page-template-1l1r-sidebar-php #wrapper {
+		width: 100%;
+		max-width: none;
+		min-width: 0;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#nav-top, #nav .col-control, .page-template-no-sidebars-php #nav-top, .page-template-no-sidebars-php  #nav .col-control, .page-template-1l-sidebar-php #nav-top, .page-template-1l-sidebar-php  #nav .col-control, .page-template-1r-sidebar-php #nav-top, .page-template-1r-sidebar-php  #nav .col-control, .page-template-2l-sidebars-php #nav-top, .page-template-2l-sidebars-php  #nav .col-control, .page-template-2r-sidebars-php #nav-top, .page-template-2r-sidebars-php  #nav .col-control, .page-template-1l1r-sidebar-php #nav-top, .page-template-1l1r-sidebar-php  #nav .col-control {	width: 100%; max-width: none; min-width: 0; }
+	#sidebar-shell-1 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	#sidebar, #sidebar-b { width: 100%; }
+	#sidebar-container.sidebar-container-left, #sidebar-container.sidebar-container-right { width: 100%; margin-right: auto; margin-left: auto; left: auto; right: auto; }
+	#sidebar.right, #sidebar-b.right, #sidebar-2.right, #sidebar-2-b.right { float: left; }
+	#sidebar, .page-template-no-sidebars-php #sidebar, .page-template-1l-sidebar-php #sidebar, .page-template-1r-sidebar-php #sidebar, .page-template-2l-sidebars-php #sidebar, .page-template-2r-sidebars-php #sidebar, .page-template-1l1r-sidebar-php #sidebar, #sidebar-b, .page-template-no-sidebars-php #sidebar-b, .page-template-1l-sidebar-php #sidebar-b, .page-template-1r-sidebar-php #sidebar-b, .page-template-2l-sidebars-php #sidebar-b, .page-template-2r-sidebars-php #sidebar-b, .page-template-1l1r-sidebar-php #sidebar-b { width: 100%; }
+	#sidebar-2, .page-template-no-sidebars-php #sidebar-2, .page-template-1l-sidebar-php #sidebar-2, .page-template-1r-sidebar-php #sidebar-2, .page-template-2l-sidebars-php #sidebar-2, .page-template-2r-sidebars-php #sidebar-2, .page-template-1l1r-sidebar-php #sidebar-2, #sidebar-2-b, .page-template-no-sidebars-php #sidebar-2-b, .page-template-1l-sidebar-php #sidebar-2-b, .page-template-1r-sidebar-php #sidebar-2-b, .page-template-2l-sidebars-php #sidebar-2-b, .page-template-2r-sidebars-php #sidebar-2-b, .page-template-1l1r-sidebar-php #sidebar-2-b { width: 100%; }
+	.page-template-2l-sidebars-php #sidebar-wrap, .page-template-2r-sidebars-php #sidebar-wrap { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	.page-template-2l-sidebars-php #sidebar-shell-1, .page-template-2r-sidebars-php #sidebar-shell-2 { width: 49%; margin-right: auto; margin-left: auto; left: auto; right: auto; float: left; }
+	.page-template-2r-sidebars-php #sidebar-shell-1, .page-template-2l-sidebars-php #sidebar-shell-2 { width: 49%; margin-right: auto; margin-left: auto; left: auto; right: auto; float: right; }
+	.page-template-2l-sidebars-php #sidebar-container.sidebar-container-left, .page-template-2r-sidebars-php #sidebar-container.sidebar-container-right { width: 100%; margin-right: auto; margin-left: auto; left: auto; right: auto; }
+	.page-template-2l-sidebars-php #sidebar-container.sidebar-container-left #sidebar-shell-1, .page-template-2r-sidebars-php #sidebar-container.sidebar-container-right #sidebar-shell-2 {width: 49%; margin-right: auto; margin-left: auto;left: auto; right: auto; float: left;}
+	.page-template-2r-sidebars-php #sidebar-container.sidebar-container-right #sidebar-shell-1, .page-template-2l-sidebars-php #sidebar-container.sidebar-container-left #sidebar-shell-2 {width: 49%; margin-right: auto; margin-left: auto;left: auto; right: auto; float: right;}
+	.page-template-1l1r-sidebar-php #sidebar-shell-1 { width: 49%; margin-right: auto; margin-left: auto; left: auto; right: auto; float: right; }
+	.page-template-1l1r-sidebar-php #sidebar-shell-2 { width: 49%; margin-right: auto; margin-left: auto; left: auto; right: auto; float: left; }
+	.page-template-1l1r-sidebar-php #sidebar-container.sidebar-container-left, .page-template-1l1r-sidebar-php #sidebar-container.sidebar-container-right { width: 49%; margin-right: auto; margin-left: auto; left: auto; right: auto; }
+	.page-template-1l1r-sidebar-php #sidebar-container.sidebar-container-left { float: left; }
+	.page-template-1l1r-sidebar-php #sidebar-container.sidebar-container-right { float: right; }
+	.page-template-1l1r-sidebar-php #sidebar-container.sidebar-container-left #sidebar-shell-1, .page-template-1l1r-sidebar-php #sidebar-container.sidebar-container-right #sidebar-shell-1, #sidebar-container.sidebar-container-left #sidebar-shell-2, #sidebar-container.sidebar-container-right #sidebar-shell-2 {width: 100%;}
+	.page-template-1l-sidebar-php #sidebar-shell-1, .page-template-1r-sidebar-php #sidebar-shell-1 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	.page-template-1l-sidebar-php #sidebar, .page-template-1l-sidebar-php #sidebar-b, .page-template-1r-sidebar-php #sidebar, .page-template-1r-sidebar-php #sidebar-b { width: 100%; }
+	.page-template-1l-sidebar-php #sidebar-container.sidebar-container-left, .page-template-1r-sidebar-php #sidebar-container.sidebar-container-right { width: 100%; margin-right: auto; margin-left: auto; left: auto; right: auto; }
+	.tab-box, .page-template-no-sidebars-php .tab-box, .page-template-1l-sidebar-php .tab-box, .page-template-1r-sidebar-php .tab-box, .page-template-2l-sidebars-php .tab-box, .page-template-2r-sidebars-php .tab-box, .page-template-1l1r-sidebar-php .tab-box { width: 100%; }
+	#wsidebar-top, .page-template-no-sidebars-php #wsidebar-top, .page-template-1l-sidebar-php #wsidebar-top, .page-template-1r-sidebar-php #wsidebar-top, .page-template-2l-sidebars-php #wsidebar-top, .page-template-2r-sidebars-php #wsidebar-top, .page-template-1l1r-sidebar-php #wsidebar-top { width: 100%; }
+	#wsidebar-bottom, .page-template-no-sidebars-php #wsidebar-bottom, .page-template-1l-sidebar-php #wsidebar-bottom, .page-template-1r-sidebar-php #wsidebar-bottom, .page-template-2l-sidebars-php #wsidebar-bottom, .page-template-2r-sidebars-php #wsidebar-bottom, .page-template-1l1r-sidebar-php #wsidebar-bottom { width: 100%; }
+	#container, .page-template-no-sidebars-php #container, .page-template-1l-sidebar-php #container, .page-template-1r-sidebar-php #container, .page-template-2l-sidebars-php #container, .page-template-2r-sidebars-php #container, .page-template-1l1r-sidebar-php #container { padding-left: 0; padding-right: 0; }
+	#main-col, .page-template-no-sidebars-php #main-col, .page-template-1l-sidebar-php #main-col, .page-template-1r-sidebar-php #main-col, .page-template-2l-sidebars-php #main-col, .page-template-2r-sidebars-php #main-col, .page-template-1l1r-sidebar-php #main-col {
+		width: 100%;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#widgets-above-header .suf-widget-1c, #widgets-above-header .suf-widget-2c, #widgets-above-header .suf-widget-3c, #widgets-above-header .suf-widget-4c, #widgets-above-header .suf-widget-5c, #widgets-above-header .suf-widget-6c, #widgets-above-header .suf-widget-7c, #widgets-above-header .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#header-widgets .suf-widget-1c, #header-widgets .suf-widget-2c, #header-widgets .suf-widget-3c, #header-widgets .suf-widget-4c, #header-widgets .suf-widget-5c, #header-widgets .suf-widget-6c, #header-widgets .suf-widget-7c, #header-widgets .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-1 .suf-widget-1c, #horizontal-outer-widgets-1 .suf-widget-2c, #horizontal-outer-widgets-1 .suf-widget-3c, #horizontal-outer-widgets-1 .suf-widget-4c, #horizontal-outer-widgets-1 .suf-widget-5c, #horizontal-outer-widgets-1 .suf-widget-6c, #horizontal-outer-widgets-1 .suf-widget-7c, #horizontal-outer-widgets-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-2 .suf-widget-1c, #horizontal-outer-widgets-2 .suf-widget-2c, #horizontal-outer-widgets-2 .suf-widget-3c, #horizontal-outer-widgets-2 .suf-widget-4c, #horizontal-outer-widgets-2 .suf-widget-5c, #horizontal-outer-widgets-2 .suf-widget-6c, #horizontal-outer-widgets-2 .suf-widget-7c, #horizontal-outer-widgets-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-1 .suf-widget-1c, #ad-hoc-1 .suf-widget-2c, #ad-hoc-1 .suf-widget-3c, #ad-hoc-1 .suf-widget-4c, #ad-hoc-1 .suf-widget-5c, #ad-hoc-1 .suf-widget-6c, #ad-hoc-1 .suf-widget-7c, #ad-hoc-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-2 .suf-widget-1c, #ad-hoc-2 .suf-widget-2c, #ad-hoc-2 .suf-widget-3c, #ad-hoc-2 .suf-widget-4c, #ad-hoc-2 .suf-widget-5c, #ad-hoc-2 .suf-widget-6c, #ad-hoc-2 .suf-widget-7c, #ad-hoc-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-3 .suf-widget-1c, #ad-hoc-3 .suf-widget-2c, #ad-hoc-3 .suf-widget-3c, #ad-hoc-3 .suf-widget-4c, #ad-hoc-3 .suf-widget-5c, #ad-hoc-3 .suf-widget-6c, #ad-hoc-3 .suf-widget-7c, #ad-hoc-3 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-4 .suf-widget-1c, #ad-hoc-4 .suf-widget-2c, #ad-hoc-4 .suf-widget-3c, #ad-hoc-4 .suf-widget-4c, #ad-hoc-4 .suf-widget-5c, #ad-hoc-4 .suf-widget-6c, #ad-hoc-4 .suf-widget-7c, #ad-hoc-4 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-5 .suf-widget-1c, #ad-hoc-5 .suf-widget-2c, #ad-hoc-5 .suf-widget-3c, #ad-hoc-5 .suf-widget-4c, #ad-hoc-5 .suf-widget-5c, #ad-hoc-5 .suf-widget-6c, #ad-hoc-5 .suf-widget-7c, #ad-hoc-5 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#cl-warea-id-1 .cl-widget, #cl-warea-id-1 .cl-warea-row .cl-widget, #cl-warea-id-1.cl-warea-all .cl-widget, #cl-warea-id-1.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-2 .cl-widget, #cl-warea-id-2 .cl-warea-row .cl-widget, #cl-warea-id-2.cl-warea-all .cl-widget, #cl-warea-id-2.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-3 .cl-widget, #cl-warea-id-3 .cl-warea-row .cl-widget, #cl-warea-id-3.cl-warea-all .cl-widget, #cl-warea-id-3.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-4 .cl-widget, #cl-warea-id-4 .cl-warea-row .cl-widget, #cl-warea-id-4.cl-warea-all .cl-widget, #cl-warea-id-4.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-5 .cl-widget, #cl-warea-id-5 .cl-warea-row .cl-widget, #cl-warea-id-5.cl-warea-all .cl-widget, #cl-warea-id-5.cl-warea-original .cl-widget { width: 100%; }
+	.suf-mag-excerpts .suf-tile-1c, .suf-mag-excerpts .suf-tile-2c, .suf-mag-excerpts .suf-tile-3c, .suf-mag-excerpts .suf-tile-4c, .suf-mag-excerpts .suf-tile-5c, .suf-mag-excerpts .suf-tile-6c, .suf-mag-excerpts .suf-tile-7c, .suf-mag-excerpts .suf-tile-8c { width: 100%; }
+	.suf-mag-categories .suf-tile-1c, .suf-mag-categories .suf-tile-2c, .suf-mag-categories .suf-tile-3c, .suf-mag-categories .suf-tile-4c, .suf-mag-categories .suf-tile-5c, .suf-mag-categories .suf-tile-6c, .suf-mag-categories .suf-tile-7c, .suf-mag-categories .suf-tile-8c { width: 100%; }
+	.suf-tiles .suf-tile-1c, .suf-tiles .suf-tile-2c, .suf-tiles .suf-tile-3c, .suf-tiles .suf-tile-4c, .suf-tiles .suf-tile-5c, .suf-tiles .suf-tile-6c, .suf-tiles .suf-tile-7c, .suf-tiles .suf-tile-8c { width: 100%; }
+.mm-warea { max-width: 180px; }
+.mm-row-equal, .mm-original, .mm-mason { text-align: justify; -ms-text-justify: distribute; text-justify: distribute; }
+.mm-row-equal:after { content: ''; width: 100%; display: inline-block; font-size: 0; line-height: 0 }
+.mm-warea .mm-widget { float: left; max-width: 160px; width: 100%; }
+}
+@media screen and (max-width: 480px) {
+.tinynav { display: block; }
+#nav ul.sf-menu, #nav-top ul.sf-menu { display: none; }
+.suf-thumbnail-anchor-left, .suf-thumbnail-anchor-right, .left-thumbnail, .right-thumbnail { width: 100%; float: none; display: inline-block; text-align: center; }
+img.left-thumbnail, img.right-thumbnail { float: none; width: auto; }
+.meta-position-left-pullout .entry-container, .meta-position-right-pullout .entry-container, .outer-pullout-container { padding-left: 0; padding-right: 0; }
+.meta-pullout, .outer-pullout-container .meta-pullout { margin-left: 0; margin-right: 0; margin-top: 5px; left: auto; right: auto; width: 100%; }
+.meta-pullout ul { border-right: none; border-left: none; }
+.meta-pullout ul li { text-align: center; }
+.meta-pullout ul li span.author { float: none; }
+
+	#wrapper, .page-template-no-sidebars-php #wrapper, .page-template-1l-sidebar-php #wrapper, .page-template-1r-sidebar-php #wrapper, .page-template-2l-sidebars-php #wrapper, .page-template-2r-sidebars-php #wrapper, .page-template-1l1r-sidebar-php #wrapper {
+		width: 100%;
+		max-width: none;
+		min-width: 0;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#nav-top, #nav .col-control, .page-template-no-sidebars-php #nav-top, .page-template-no-sidebars-php  #nav .col-control, .page-template-1l-sidebar-php #nav-top, .page-template-1l-sidebar-php  #nav .col-control, .page-template-1r-sidebar-php #nav-top, .page-template-1r-sidebar-php  #nav .col-control, .page-template-2l-sidebars-php #nav-top, .page-template-2l-sidebars-php  #nav .col-control, .page-template-2r-sidebars-php #nav-top, .page-template-2r-sidebars-php  #nav .col-control, .page-template-1l1r-sidebar-php #nav-top, .page-template-1l1r-sidebar-php  #nav .col-control {	width: 100%; max-width: none; min-width: 0; }
+	#sidebar-shell-1, .page-template-no-sidebars-php #sidebar-shell-1, .page-template-1l-sidebar-php #sidebar-shell-1, .page-template-1r-sidebar-php #sidebar-shell-1, .page-template-2l-sidebars-php #sidebar-shell-1, .page-template-2r-sidebars-php #sidebar-shell-1, .page-template-1l1r-sidebar-php #sidebar-shell-1 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	#sidebar, .page-template-no-sidebars-php #sidebar, .page-template-1l-sidebar-php #sidebar, .page-template-1r-sidebar-php #sidebar, .page-template-2l-sidebars-php #sidebar, .page-template-2r-sidebars-php #sidebar, .page-template-1l1r-sidebar-php #sidebar, #sidebar-b, .page-template-no-sidebars-php #sidebar-b, .page-template-1l-sidebar-php #sidebar-b, .page-template-1r-sidebar-php #sidebar-b, .page-template-2l-sidebars-php #sidebar-b, .page-template-2r-sidebars-php #sidebar-b, .page-template-1l1r-sidebar-php #sidebar-b { width: 100%; }
+	#sidebar-shell-2, .page-template-no-sidebars-php #sidebar-shell-2, .page-template-1l-sidebar-php #sidebar-shell-2, .page-template-1r-sidebar-php #sidebar-shell-2, .page-template-2l-sidebars-php #sidebar-shell-2, .page-template-2r-sidebars-php #sidebar-shell-2, .page-template-1l1r-sidebar-php #sidebar-shell-2 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	#sidebar-2, .page-template-no-sidebars-php #sidebar-2, .page-template-1l-sidebar-php #sidebar-2, .page-template-1r-sidebar-php #sidebar-2, .page-template-2l-sidebars-php #sidebar-2, .page-template-2r-sidebars-php #sidebar-2, .page-template-1l1r-sidebar-php #sidebar-2, #sidebar-2-b, .page-template-no-sidebars-php #sidebar-2-b, .page-template-1l-sidebar-php #sidebar-2-b, .page-template-1r-sidebar-php #sidebar-2-b, .page-template-2l-sidebars-php #sidebar-2-b, .page-template-2r-sidebars-php #sidebar-2-b, .page-template-1l1r-sidebar-php #sidebar-2-b { width: 100%; }
+	#container, .page-template-no-sidebars-php #container, .page-template-1l-sidebar-php #container, .page-template-1r-sidebar-php #container, .page-template-2l-sidebars-php #container, .page-template-2r-sidebars-php #container, .page-template-1l1r-sidebar-php #container { padding-left: 0; padding-right: 0; }
+	#main-col, .page-template-no-sidebars-php #main-col, .page-template-1l-sidebar-php #main-col, .page-template-1r-sidebar-php #main-col, .page-template-2l-sidebars-php #main-col, .page-template-2r-sidebars-php #main-col, .page-template-1l1r-sidebar-php #main-col {
+		width: 100%;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#widgets-above-header .suf-widget-1c, #widgets-above-header .suf-widget-2c, #widgets-above-header .suf-widget-3c, #widgets-above-header .suf-widget-4c, #widgets-above-header .suf-widget-5c, #widgets-above-header .suf-widget-6c, #widgets-above-header .suf-widget-7c, #widgets-above-header .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#header-widgets .suf-widget-1c, #header-widgets .suf-widget-2c, #header-widgets .suf-widget-3c, #header-widgets .suf-widget-4c, #header-widgets .suf-widget-5c, #header-widgets .suf-widget-6c, #header-widgets .suf-widget-7c, #header-widgets .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-1 .suf-widget-1c, #horizontal-outer-widgets-1 .suf-widget-2c, #horizontal-outer-widgets-1 .suf-widget-3c, #horizontal-outer-widgets-1 .suf-widget-4c, #horizontal-outer-widgets-1 .suf-widget-5c, #horizontal-outer-widgets-1 .suf-widget-6c, #horizontal-outer-widgets-1 .suf-widget-7c, #horizontal-outer-widgets-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-2 .suf-widget-1c, #horizontal-outer-widgets-2 .suf-widget-2c, #horizontal-outer-widgets-2 .suf-widget-3c, #horizontal-outer-widgets-2 .suf-widget-4c, #horizontal-outer-widgets-2 .suf-widget-5c, #horizontal-outer-widgets-2 .suf-widget-6c, #horizontal-outer-widgets-2 .suf-widget-7c, #horizontal-outer-widgets-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-1 .suf-widget-1c, #ad-hoc-1 .suf-widget-2c, #ad-hoc-1 .suf-widget-3c, #ad-hoc-1 .suf-widget-4c, #ad-hoc-1 .suf-widget-5c, #ad-hoc-1 .suf-widget-6c, #ad-hoc-1 .suf-widget-7c, #ad-hoc-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-2 .suf-widget-1c, #ad-hoc-2 .suf-widget-2c, #ad-hoc-2 .suf-widget-3c, #ad-hoc-2 .suf-widget-4c, #ad-hoc-2 .suf-widget-5c, #ad-hoc-2 .suf-widget-6c, #ad-hoc-2 .suf-widget-7c, #ad-hoc-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-3 .suf-widget-1c, #ad-hoc-3 .suf-widget-2c, #ad-hoc-3 .suf-widget-3c, #ad-hoc-3 .suf-widget-4c, #ad-hoc-3 .suf-widget-5c, #ad-hoc-3 .suf-widget-6c, #ad-hoc-3 .suf-widget-7c, #ad-hoc-3 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-4 .suf-widget-1c, #ad-hoc-4 .suf-widget-2c, #ad-hoc-4 .suf-widget-3c, #ad-hoc-4 .suf-widget-4c, #ad-hoc-4 .suf-widget-5c, #ad-hoc-4 .suf-widget-6c, #ad-hoc-4 .suf-widget-7c, #ad-hoc-4 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-5 .suf-widget-1c, #ad-hoc-5 .suf-widget-2c, #ad-hoc-5 .suf-widget-3c, #ad-hoc-5 .suf-widget-4c, #ad-hoc-5 .suf-widget-5c, #ad-hoc-5 .suf-widget-6c, #ad-hoc-5 .suf-widget-7c, #ad-hoc-5 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#cl-warea-id-1 .cl-widget, #cl-warea-id-1 .cl-warea-row .cl-widget, #cl-warea-id-1.cl-warea-all .cl-widget, #cl-warea-id-1.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-2 .cl-widget, #cl-warea-id-2 .cl-warea-row .cl-widget, #cl-warea-id-2.cl-warea-all .cl-widget, #cl-warea-id-2.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-3 .cl-widget, #cl-warea-id-3 .cl-warea-row .cl-widget, #cl-warea-id-3.cl-warea-all .cl-widget, #cl-warea-id-3.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-4 .cl-widget, #cl-warea-id-4 .cl-warea-row .cl-widget, #cl-warea-id-4.cl-warea-all .cl-widget, #cl-warea-id-4.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-5 .cl-widget, #cl-warea-id-5 .cl-warea-row .cl-widget, #cl-warea-id-5.cl-warea-all .cl-widget, #cl-warea-id-5.cl-warea-original .cl-widget { width: 100%; }
+	.suf-mag-excerpts .suf-tile-1c, .suf-mag-excerpts .suf-tile-2c, .suf-mag-excerpts .suf-tile-3c, .suf-mag-excerpts .suf-tile-4c, .suf-mag-excerpts .suf-tile-5c, .suf-mag-excerpts .suf-tile-6c, .suf-mag-excerpts .suf-tile-7c, .suf-mag-excerpts .suf-tile-8c { width: 100%; }
+	.suf-mag-categories .suf-tile-1c, .suf-mag-categories .suf-tile-2c, .suf-mag-categories .suf-tile-3c, .suf-mag-categories .suf-tile-4c, .suf-mag-categories .suf-tile-5c, .suf-mag-categories .suf-tile-6c, .suf-mag-categories .suf-tile-7c, .suf-mag-categories .suf-tile-8c { width: 100%; }
+	.suf-tiles .suf-tile-1c, .suf-tiles .suf-tile-2c, .suf-tiles .suf-tile-3c, .suf-tiles .suf-tile-4c, .suf-tiles .suf-tile-5c, .suf-tiles .suf-tile-6c, .suf-tiles .suf-tile-7c, .suf-tiles .suf-tile-8c { width: 100%; }
+.mm-warea { max-width: 180px; }
+.mm-row-equal, .mm-original, .mm-mason { text-align: justify; -ms-text-justify: distribute; text-justify: distribute; }
+.mm-row-equal:after { content: ''; width: 100%; display: inline-block; font-size: 0; line-height: 0 }
+.mm-warea .mm-widget { float: left; max-width: 160px; width: 100%; }
+}
+@media screen and (max-width: 320px) {
+.tinynav { display: block; }
+#nav ul.sf-menu, #nav-top ul.sf-menu { display: none; }
+.suf-thumbnail-anchor-left, .suf-thumbnail-anchor-right, .left-thumbnail, .right-thumbnail { width: 100%; float: none; display: inline-block; text-align: center; }
+img.left-thumbnail, img.right-thumbnail { float: none; width: auto; }
+.meta-position-left-pullout .entry-container, .meta-position-right-pullout .entry-container, .outer-pullout-container { padding-left: 0; padding-right: 0; }
+.meta-pullout, .outer-pullout-container .meta-pullout { margin-left: 0; margin-right: 0; margin-top: 5px; left: auto; right: auto; width: 100%; }
+.meta-pullout ul { border-right: none; border-left: none; }
+.meta-pullout ul li { text-align: center; }
+.meta-pullout ul li span.author { float: none; }
+
+	#wrapper, .page-template-no-sidebars-php #wrapper, .page-template-1l-sidebar-php #wrapper, .page-template-1r-sidebar-php #wrapper, .page-template-2l-sidebars-php #wrapper, .page-template-2r-sidebars-php #wrapper, .page-template-1l1r-sidebar-php #wrapper {
+		width: 100%;
+		max-width: none;
+		min-width: 0;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#nav-top, #nav .col-control, .page-template-no-sidebars-php #nav-top, .page-template-no-sidebars-php  #nav .col-control, .page-template-1l-sidebar-php #nav-top, .page-template-1l-sidebar-php  #nav .col-control, .page-template-1r-sidebar-php #nav-top, .page-template-1r-sidebar-php  #nav .col-control, .page-template-2l-sidebars-php #nav-top, .page-template-2l-sidebars-php  #nav .col-control, .page-template-2r-sidebars-php #nav-top, .page-template-2r-sidebars-php  #nav .col-control, .page-template-1l1r-sidebar-php #nav-top, .page-template-1l1r-sidebar-php  #nav .col-control {	width: 100%; max-width: none; min-width: 0; }
+	#sidebar-shell-1, .page-template-no-sidebars-php #sidebar-shell-1, .page-template-1l-sidebar-php #sidebar-shell-1, .page-template-1r-sidebar-php #sidebar-shell-1, .page-template-2l-sidebars-php #sidebar-shell-1, .page-template-2r-sidebars-php #sidebar-shell-1, .page-template-1l1r-sidebar-php #sidebar-shell-1 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	#sidebar, .page-template-no-sidebars-php #sidebar, .page-template-1l-sidebar-php #sidebar, .page-template-1r-sidebar-php #sidebar, .page-template-2l-sidebars-php #sidebar, .page-template-2r-sidebars-php #sidebar, .page-template-1l1r-sidebar-php #sidebar, #sidebar-b, .page-template-no-sidebars-php #sidebar-b, .page-template-1l-sidebar-php #sidebar-b, .page-template-1r-sidebar-php #sidebar-b, .page-template-2l-sidebars-php #sidebar-b, .page-template-2r-sidebars-php #sidebar-b, .page-template-1l1r-sidebar-php #sidebar-b { width: 100%; }
+	#sidebar-shell-2, .page-template-no-sidebars-php #sidebar-shell-2, .page-template-1l-sidebar-php #sidebar-shell-2, .page-template-1r-sidebar-php #sidebar-shell-2, .page-template-2l-sidebars-php #sidebar-shell-2, .page-template-2r-sidebars-php #sidebar-shell-2, .page-template-1l1r-sidebar-php #sidebar-shell-2 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	#sidebar-2, .page-template-no-sidebars-php #sidebar-2, .page-template-1l-sidebar-php #sidebar-2, .page-template-1r-sidebar-php #sidebar-2, .page-template-2l-sidebars-php #sidebar-2, .page-template-2r-sidebars-php #sidebar-2, .page-template-1l1r-sidebar-php #sidebar-2, #sidebar-2-b, .page-template-no-sidebars-php #sidebar-2-b, .page-template-1l-sidebar-php #sidebar-2-b, .page-template-1r-sidebar-php #sidebar-2-b, .page-template-2l-sidebars-php #sidebar-2-b, .page-template-2r-sidebars-php #sidebar-2-b, .page-template-1l1r-sidebar-php #sidebar-2-b { width: 100%; }
+	#container, .page-template-no-sidebars-php #container, .page-template-1l-sidebar-php #container, .page-template-1r-sidebar-php #container, .page-template-2l-sidebars-php #container, .page-template-2r-sidebars-php #container, .page-template-1l1r-sidebar-php #container { padding-left: 0; padding-right: 0; }
+	#main-col, .page-template-no-sidebars-php #main-col, .page-template-1l-sidebar-php #main-col, .page-template-1r-sidebar-php #main-col, .page-template-2l-sidebars-php #main-col, .page-template-2r-sidebars-php #main-col, .page-template-1l1r-sidebar-php #main-col {
+		width: 100%;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#widgets-above-header .suf-widget-1c, #widgets-above-header .suf-widget-2c, #widgets-above-header .suf-widget-3c, #widgets-above-header .suf-widget-4c, #widgets-above-header .suf-widget-5c, #widgets-above-header .suf-widget-6c, #widgets-above-header .suf-widget-7c, #widgets-above-header .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#header-widgets .suf-widget-1c, #header-widgets .suf-widget-2c, #header-widgets .suf-widget-3c, #header-widgets .suf-widget-4c, #header-widgets .suf-widget-5c, #header-widgets .suf-widget-6c, #header-widgets .suf-widget-7c, #header-widgets .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-1 .suf-widget-1c, #horizontal-outer-widgets-1 .suf-widget-2c, #horizontal-outer-widgets-1 .suf-widget-3c, #horizontal-outer-widgets-1 .suf-widget-4c, #horizontal-outer-widgets-1 .suf-widget-5c, #horizontal-outer-widgets-1 .suf-widget-6c, #horizontal-outer-widgets-1 .suf-widget-7c, #horizontal-outer-widgets-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-2 .suf-widget-1c, #horizontal-outer-widgets-2 .suf-widget-2c, #horizontal-outer-widgets-2 .suf-widget-3c, #horizontal-outer-widgets-2 .suf-widget-4c, #horizontal-outer-widgets-2 .suf-widget-5c, #horizontal-outer-widgets-2 .suf-widget-6c, #horizontal-outer-widgets-2 .suf-widget-7c, #horizontal-outer-widgets-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-1 .suf-widget-1c, #ad-hoc-1 .suf-widget-2c, #ad-hoc-1 .suf-widget-3c, #ad-hoc-1 .suf-widget-4c, #ad-hoc-1 .suf-widget-5c, #ad-hoc-1 .suf-widget-6c, #ad-hoc-1 .suf-widget-7c, #ad-hoc-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-2 .suf-widget-1c, #ad-hoc-2 .suf-widget-2c, #ad-hoc-2 .suf-widget-3c, #ad-hoc-2 .suf-widget-4c, #ad-hoc-2 .suf-widget-5c, #ad-hoc-2 .suf-widget-6c, #ad-hoc-2 .suf-widget-7c, #ad-hoc-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-3 .suf-widget-1c, #ad-hoc-3 .suf-widget-2c, #ad-hoc-3 .suf-widget-3c, #ad-hoc-3 .suf-widget-4c, #ad-hoc-3 .suf-widget-5c, #ad-hoc-3 .suf-widget-6c, #ad-hoc-3 .suf-widget-7c, #ad-hoc-3 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-4 .suf-widget-1c, #ad-hoc-4 .suf-widget-2c, #ad-hoc-4 .suf-widget-3c, #ad-hoc-4 .suf-widget-4c, #ad-hoc-4 .suf-widget-5c, #ad-hoc-4 .suf-widget-6c, #ad-hoc-4 .suf-widget-7c, #ad-hoc-4 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-5 .suf-widget-1c, #ad-hoc-5 .suf-widget-2c, #ad-hoc-5 .suf-widget-3c, #ad-hoc-5 .suf-widget-4c, #ad-hoc-5 .suf-widget-5c, #ad-hoc-5 .suf-widget-6c, #ad-hoc-5 .suf-widget-7c, #ad-hoc-5 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#cl-warea-id-1 .cl-widget, #cl-warea-id-1 .cl-warea-row .cl-widget, #cl-warea-id-1.cl-warea-all .cl-widget, #cl-warea-id-1.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-2 .cl-widget, #cl-warea-id-2 .cl-warea-row .cl-widget, #cl-warea-id-2.cl-warea-all .cl-widget, #cl-warea-id-2.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-3 .cl-widget, #cl-warea-id-3 .cl-warea-row .cl-widget, #cl-warea-id-3.cl-warea-all .cl-widget, #cl-warea-id-3.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-4 .cl-widget, #cl-warea-id-4 .cl-warea-row .cl-widget, #cl-warea-id-4.cl-warea-all .cl-widget, #cl-warea-id-4.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-5 .cl-widget, #cl-warea-id-5 .cl-warea-row .cl-widget, #cl-warea-id-5.cl-warea-all .cl-widget, #cl-warea-id-5.cl-warea-original .cl-widget { width: 100%; }
+	.suf-mag-excerpts .suf-tile-1c, .suf-mag-excerpts .suf-tile-2c, .suf-mag-excerpts .suf-tile-3c, .suf-mag-excerpts .suf-tile-4c, .suf-mag-excerpts .suf-tile-5c, .suf-mag-excerpts .suf-tile-6c, .suf-mag-excerpts .suf-tile-7c, .suf-mag-excerpts .suf-tile-8c { width: 100%; }
+	.suf-mag-categories .suf-tile-1c, .suf-mag-categories .suf-tile-2c, .suf-mag-categories .suf-tile-3c, .suf-mag-categories .suf-tile-4c, .suf-mag-categories .suf-tile-5c, .suf-mag-categories .suf-tile-6c, .suf-mag-categories .suf-tile-7c, .suf-mag-categories .suf-tile-8c { width: 100%; }
+	.suf-tiles .suf-tile-1c, .suf-tiles .suf-tile-2c, .suf-tiles .suf-tile-3c, .suf-tiles .suf-tile-4c, .suf-tiles .suf-tile-5c, .suf-tiles .suf-tile-6c, .suf-tiles .suf-tile-7c, .suf-tiles .suf-tile-8c { width: 100%; }
+}
+@media screen and (max-width: 240px) {
+.tinynav { display: block; }
+#nav ul.sf-menu, #nav-top ul.sf-menu { display: none; }
+.suf-thumbnail-anchor-left, .suf-thumbnail-anchor-right, .left-thumbnail, .right-thumbnail { width: 100%; float: none; display: inline-block; text-align: center; }
+img.left-thumbnail, img.right-thumbnail { float: none; width: auto; }
+.meta-position-left-pullout .entry-container, .meta-position-right-pullout .entry-container, .outer-pullout-container { padding-left: 0; padding-right: 0; }
+.meta-pullout, .outer-pullout-container .meta-pullout { margin-left: 0; margin-right: 0; margin-top: 5px; left: auto; right: auto; width: 100%; }
+.meta-pullout ul { border-right: none; border-left: none; }
+.meta-pullout ul li { text-align: center; }
+.meta-pullout ul li span.author { float: none; }
+
+	#wrapper, .page-template-no-sidebars-php #wrapper, .page-template-1l-sidebar-php #wrapper, .page-template-1r-sidebar-php #wrapper, .page-template-2l-sidebars-php #wrapper, .page-template-2r-sidebars-php #wrapper, .page-template-1l1r-sidebar-php #wrapper {
+		width: 100%;
+		max-width: none;
+		min-width: 0;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#nav-top, #nav .col-control, .page-template-no-sidebars-php #nav-top, .page-template-no-sidebars-php  #nav .col-control, .page-template-1l-sidebar-php #nav-top, .page-template-1l-sidebar-php  #nav .col-control, .page-template-1r-sidebar-php #nav-top, .page-template-1r-sidebar-php  #nav .col-control, .page-template-2l-sidebars-php #nav-top, .page-template-2l-sidebars-php  #nav .col-control, .page-template-2r-sidebars-php #nav-top, .page-template-2r-sidebars-php  #nav .col-control, .page-template-1l1r-sidebar-php #nav-top, .page-template-1l1r-sidebar-php  #nav .col-control {	width: 100%; max-width: none; min-width: 0; }
+	#sidebar-shell-1, .page-template-no-sidebars-php #sidebar-shell-1, .page-template-1l-sidebar-php #sidebar-shell-1, .page-template-1r-sidebar-php #sidebar-shell-1, .page-template-2l-sidebars-php #sidebar-shell-1, .page-template-2r-sidebars-php #sidebar-shell-1, .page-template-1l1r-sidebar-php #sidebar-shell-1 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	#sidebar, .page-template-no-sidebars-php #sidebar, .page-template-1l-sidebar-php #sidebar, .page-template-1r-sidebar-php #sidebar, .page-template-2l-sidebars-php #sidebar, .page-template-2r-sidebars-php #sidebar, .page-template-1l1r-sidebar-php #sidebar, #sidebar-b, .page-template-no-sidebars-php #sidebar-b, .page-template-1l-sidebar-php #sidebar-b, .page-template-1r-sidebar-php #sidebar-b, .page-template-2l-sidebars-php #sidebar-b, .page-template-2r-sidebars-php #sidebar-b, .page-template-1l1r-sidebar-php #sidebar-b { width: 100%; }
+	#sidebar-shell-2, .page-template-no-sidebars-php #sidebar-shell-2, .page-template-1l-sidebar-php #sidebar-shell-2, .page-template-1r-sidebar-php #sidebar-shell-2, .page-template-2l-sidebars-php #sidebar-shell-2, .page-template-2r-sidebars-php #sidebar-shell-2, .page-template-1l1r-sidebar-php #sidebar-shell-2 { margin-right: auto; margin-left: auto; width: 100%; left: auto; right: auto; }
+	#sidebar-2, .page-template-no-sidebars-php #sidebar-2, .page-template-1l-sidebar-php #sidebar-2, .page-template-1r-sidebar-php #sidebar-2, .page-template-2l-sidebars-php #sidebar-2, .page-template-2r-sidebars-php #sidebar-2, .page-template-1l1r-sidebar-php #sidebar-2, #sidebar-2-b, .page-template-no-sidebars-php #sidebar-2-b, .page-template-1l-sidebar-php #sidebar-2-b, .page-template-1r-sidebar-php #sidebar-2-b, .page-template-2l-sidebars-php #sidebar-2-b, .page-template-2r-sidebars-php #sidebar-2-b, .page-template-1l1r-sidebar-php #sidebar-2-b { width: 100%; }
+	#container, .page-template-no-sidebars-php #container, .page-template-1l-sidebar-php #container, .page-template-1r-sidebar-php #container, .page-template-2l-sidebars-php #container, .page-template-2r-sidebars-php #container, .page-template-1l1r-sidebar-php #container { padding-left: 0; padding-right: 0; }
+	#main-col, .page-template-no-sidebars-php #main-col, .page-template-1l-sidebar-php #main-col, .page-template-1r-sidebar-php #main-col, .page-template-2l-sidebars-php #main-col, .page-template-2r-sidebars-php #main-col, .page-template-1l1r-sidebar-php #main-col {
+		width: 100%;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#widgets-above-header .suf-widget-1c, #widgets-above-header .suf-widget-2c, #widgets-above-header .suf-widget-3c, #widgets-above-header .suf-widget-4c, #widgets-above-header .suf-widget-5c, #widgets-above-header .suf-widget-6c, #widgets-above-header .suf-widget-7c, #widgets-above-header .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#header-widgets .suf-widget-1c, #header-widgets .suf-widget-2c, #header-widgets .suf-widget-3c, #header-widgets .suf-widget-4c, #header-widgets .suf-widget-5c, #header-widgets .suf-widget-6c, #header-widgets .suf-widget-7c, #header-widgets .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-1 .suf-widget-1c, #horizontal-outer-widgets-1 .suf-widget-2c, #horizontal-outer-widgets-1 .suf-widget-3c, #horizontal-outer-widgets-1 .suf-widget-4c, #horizontal-outer-widgets-1 .suf-widget-5c, #horizontal-outer-widgets-1 .suf-widget-6c, #horizontal-outer-widgets-1 .suf-widget-7c, #horizontal-outer-widgets-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#horizontal-outer-widgets-2 .suf-widget-1c, #horizontal-outer-widgets-2 .suf-widget-2c, #horizontal-outer-widgets-2 .suf-widget-3c, #horizontal-outer-widgets-2 .suf-widget-4c, #horizontal-outer-widgets-2 .suf-widget-5c, #horizontal-outer-widgets-2 .suf-widget-6c, #horizontal-outer-widgets-2 .suf-widget-7c, #horizontal-outer-widgets-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-1 .suf-widget-1c, #ad-hoc-1 .suf-widget-2c, #ad-hoc-1 .suf-widget-3c, #ad-hoc-1 .suf-widget-4c, #ad-hoc-1 .suf-widget-5c, #ad-hoc-1 .suf-widget-6c, #ad-hoc-1 .suf-widget-7c, #ad-hoc-1 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-2 .suf-widget-1c, #ad-hoc-2 .suf-widget-2c, #ad-hoc-2 .suf-widget-3c, #ad-hoc-2 .suf-widget-4c, #ad-hoc-2 .suf-widget-5c, #ad-hoc-2 .suf-widget-6c, #ad-hoc-2 .suf-widget-7c, #ad-hoc-2 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-3 .suf-widget-1c, #ad-hoc-3 .suf-widget-2c, #ad-hoc-3 .suf-widget-3c, #ad-hoc-3 .suf-widget-4c, #ad-hoc-3 .suf-widget-5c, #ad-hoc-3 .suf-widget-6c, #ad-hoc-3 .suf-widget-7c, #ad-hoc-3 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-4 .suf-widget-1c, #ad-hoc-4 .suf-widget-2c, #ad-hoc-4 .suf-widget-3c, #ad-hoc-4 .suf-widget-4c, #ad-hoc-4 .suf-widget-5c, #ad-hoc-4 .suf-widget-6c, #ad-hoc-4 .suf-widget-7c, #ad-hoc-4 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#ad-hoc-5 .suf-widget-1c, #ad-hoc-5 .suf-widget-2c, #ad-hoc-5 .suf-widget-3c, #ad-hoc-5 .suf-widget-4c, #ad-hoc-5 .suf-widget-5c, #ad-hoc-5 .suf-widget-6c, #ad-hoc-5 .suf-widget-7c, #ad-hoc-5 .suf-widget-8c { width: 100%; margin: 5px 0; }
+	#cl-warea-id-1 .cl-widget, #cl-warea-id-1 .cl-warea-row .cl-widget, #cl-warea-id-1.cl-warea-all .cl-widget, #cl-warea-id-1.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-2 .cl-widget, #cl-warea-id-2 .cl-warea-row .cl-widget, #cl-warea-id-2.cl-warea-all .cl-widget, #cl-warea-id-2.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-3 .cl-widget, #cl-warea-id-3 .cl-warea-row .cl-widget, #cl-warea-id-3.cl-warea-all .cl-widget, #cl-warea-id-3.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-4 .cl-widget, #cl-warea-id-4 .cl-warea-row .cl-widget, #cl-warea-id-4.cl-warea-all .cl-widget, #cl-warea-id-4.cl-warea-original .cl-widget { width: 100%; }
+	#cl-warea-id-5 .cl-widget, #cl-warea-id-5 .cl-warea-row .cl-widget, #cl-warea-id-5.cl-warea-all .cl-widget, #cl-warea-id-5.cl-warea-original .cl-widget { width: 100%; }
+	.suf-mag-excerpts .suf-tile-1c, .suf-mag-excerpts .suf-tile-2c, .suf-mag-excerpts .suf-tile-3c, .suf-mag-excerpts .suf-tile-4c, .suf-mag-excerpts .suf-tile-5c, .suf-mag-excerpts .suf-tile-6c, .suf-mag-excerpts .suf-tile-7c, .suf-mag-excerpts .suf-tile-8c { width: 100%; }
+	.suf-mag-categories .suf-tile-1c, .suf-mag-categories .suf-tile-2c, .suf-mag-categories .suf-tile-3c, .suf-mag-categories .suf-tile-4c, .suf-mag-categories .suf-tile-5c, .suf-mag-categories .suf-tile-6c, .suf-mag-categories .suf-tile-7c, .suf-mag-categories .suf-tile-8c { width: 100%; }
+	.suf-tiles .suf-tile-1c, .suf-tiles .suf-tile-2c, .suf-tiles .suf-tile-3c, .suf-tiles .suf-tile-4c, .suf-tiles .suf-tile-5c, .suf-tiles .suf-tile-6c, .suf-tiles .suf-tile-7c, .suf-tiles .suf-tile-8c { width: 100%; }
+}
+	/* ]]> */
+	</style>
+
+</head>
+<body class="home blog light-theme-orange suffusion-custom device-desktop">
+<div id="wrapper" class="fix">
+<div id="header-container" class="custom-header fix">
+<header id="header" class="fix">
+<h1 class="blogtitle left"><a href="https://linuxaria.com">Linuxaria</a></h1>
+<div class="description right">Everything about Linux</div>
+</header>
+<nav id="nav" class="tab fix">
+<div class='col-control left'>
+
+<div id="right-header-widgets" class="warea">
+<div id="text-11" class="widget_text"> <div class="textwidget"><form action="https://www.google.com" id="cse-search-box" target="_blank">
+<div>
+<input type="hidden" name="cx" value="partner-pub-2431705124166952:4754734936" />
+<input type="hidden" name="ie" value="UTF-8" />
+<input type="text" name="q" size="23" />
+<input type="submit" name="sa" value="Search" />
+</div>
+</form>
+<script type="text/javascript" src="https://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang="></script></div>
+</div> </div>
+
+<ul class='sf-menu'>
+<li class='current_page_item'><a href='https://linuxaria.com'><img src='https://cdn.linuxaria.com/wp-content/themes/suffusion/images/home-light.png' alt='Home' class='home-icon' /></a></li> <li class="cat-item cat-item-10"><a href="https://linuxaria.com/category/article">Articles</a>
+<ul class='children'>
+<li class="cat-item cat-item-24"><a href="https://linuxaria.com/category/article/news">News</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-27"><a href="https://linuxaria.com/category/howto">Guides</a>
+</li>
+<li class="cat-item cat-item-261"><a href="https://linuxaria.com/category/interviste">Interview</a>
+</li>
+<li class="cat-item cat-item-11"><a href="https://linuxaria.com/category/pills">Pills</a>
+</li>
+<li class="cat-item cat-item-13"><a href="https://linuxaria.com/category/recensioni">Reviews</a>
+</li>
+<li class="pagenav"><a href='#' onclick='return false;'>Information</a><ul><li class="page_item page-item-943"><a href="https://linuxaria.com/collabora">Contribute</a></li>
+<li class="page_item page-item-61"><a href="https://linuxaria.com/contattami">Contact me</a></li>
+<li class="page_item page-item-44"><a href="https://linuxaria.com/info">Info</a></li>
+<li class="page_item page-item-221"><a href="https://linuxaria.com/privacy-policy">Privacy Policy</a></li>
+</ul></li><li id="linkcat-" class="linkcat"><a href='#'>Links</a>
+<ul class='xoxo blogroll'>
+<li><a href="http://gmstyle.org/">GMStyle</a></li>
+<li><a href="http://www.ilbloggatore.com/" target="_blank">Il Bloggatore</a></li>
+<li><a href="http://www.linux.com/" target="_blank">Linux</a></li>
+<li><a href="http://www.linuxtoday.com/" target="_blank">Linux Today</a></li>
+<li><a href="http://www.linuxfeed.org/" target="_blank">Linuxfeed</a></li>
+<li><a href="http://www.linuxinsight.com/">LinuxInsight</a></li>
+<li><a href="http://lxer.com/" target="_blank">Lxer</a></li>
+<li><a href="http://ziobudda.net/" target="_blank">ZioBudda</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+
+<div id="horizontal-outer-widgets-1" class="dbx-group boxed warea fix">
+<aside id="text-6" class="suf-widget suf-horizontal-widget suf-widget-1c widget_text"><div class="dbx-content"><h3 class="dbx-handle plain">sponsored links</h3> <div class="textwidget"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2431705124166952";
+/* Largone */
+google_ad_slot = "1711601452";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+</div></aside></div>
+ <div id="container" class="fix">
+<div id="main-col">
+<div id="content" class="hfeed">
+<article class="full-content post-8536 post type-post status-publish format-standard hentry category-article category-howto tag-alias tag-continuos-integration tag-ghost tag-infrastructure tag-jenkins tag-paas tag-ports category-10-id category-27-id post-seq-1 post-parity-odd meta-position-corners fix" id="post-8536">
+<header class='post-header title-container fix'>
+<div class="title">
+<h2 class="posttitle"><a href='https://linuxaria.com/article/paas-and-continuos-integration' class='entry-title' rel='bookmark' title='Paas and continuos integration'>Paas and continuos integration</a></h2>
+<div class="postdata fix">
+<span class="category"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/category/article" rel="category tag">Articles</a>, <a href="https://linuxaria.com/category/howto" rel="category tag">Guides</a></span>
+<span class="comments"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/article/paas-and-continuos-integration#respond">No Responses &#187;</a></span>
+</div>
+</div>
+<div class="date"><span class="month">Nov</span> <span class="day">01</span><span class="year">2016</span></div>
+</header>
+<span class='post-format-icon'>&nbsp;</span><span class='updated' title='2016-11-01T11:15:55+00:00'></span> <div class="entry-container fix">
+<div class="entry entry-content fix">
+<div class="at-above-post-homepage addthis_tool" data-url="https://linuxaria.com/article/paas-and-continuos-integration"></div><p>Today I want to repost a great article first posted on <a href="http://sysadvent.blogspot.it/search?updated-max=2015-12-19T00:00:00-05:00&amp;max-results=7">sysadvent</a> blog.</p>
+<p>I think it&#8217;s a great post that show how to integrate different software to achieve a modern continuos integration.</p>
+<p>Original article by:<br />
+Written by: Paul Czarkowski (@pczarkowski)<br />
+Edited by: Dan Phrawzty (@phrawzty)</p>
+<p>Docker and the ecosystem around it have done some great things for developers, but from an operational standpoint, it&#8217;s mostly just the same old issues with a fresh coat of paint. Real change happens when we change our perspective from <em>Infrastructure</em> (as a Service) to <em>Platform</em> (as a Service), and when the ultimate deployment artifact is a running application instead of a virtual machine.</p>
+<p>Even Kubernates still feels a lot like IaaS &#8211; just with containers instead of virtual machines. To be fair, there are already some platforms out there that shift the user experience towards the application (Cloud Foundry and Heroku come to mind), but many of them have a large operations burden, or are provided in a SaaS model only.</p>
+<p>In the Docker ecosystem we are starting to see more of these types of platforms, the first of which was <a href="https://github.com/progrium/dokku">Dokku</a> which started as a single machine <a href="http://heroku.com/">Heroku</a> replacement written in about 100 lines of Bash. Building on top of that work other, richer systems like <a href="http://deis.io/">Deis</a>and <a href="http://flynn.io/">Flynn</a> have emerged, as well as custom solutions built in-house, like Yelp&#8217;s <a href="https://github.com/Yelp/PaaSta">PaaSta</a>.</p>
+<p><span class='more-link fix'> <a href="https://linuxaria.com/article/paas-and-continuos-integration#more-8536" class="more-link">Continue reading &raquo;</a></span></p>
+
+
+
+
+
+<div class="at-below-post-homepage addthis_tool" data-url="https://linuxaria.com/article/paas-and-continuos-integration"></div>
+
+<p class="wp-flattr-button"><a href="https://linuxaria.com/?flattrss_redirect&amp;id=8536&amp;md5=d41e8a5281912b9a9e88697e35a8d26c" title="Flattr" target="_blank"><img src="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" srcset="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="Flattr this!" /></a></p> </div>
+</div>
+<footer class="post-footer postdata fix">
+<span class="author"><span class="icon">&nbsp;</span>Posted by <span class="vcard"><a href="https://linuxaria.com/author/linuxari" class="url fn" rel="author">linuxari</a></span> at 11:15</span> <span class="tags tax"><span class="icon">&nbsp;</span>Tagged with: <a href="https://linuxaria.com/tag/alias" rel="tag">alias</a>, <a href="https://linuxaria.com/tag/continuos-integration" rel="tag">continuos integration</a>, <a href="https://linuxaria.com/tag/ghost" rel="tag">ghost</a>, <a href="https://linuxaria.com/tag/infrastructure" rel="tag">infrastructure</a>, <a href="https://linuxaria.com/tag/jenkins" rel="tag">jenkins</a>, <a href="https://linuxaria.com/tag/paas" rel="tag">paas</a>, <a href="https://linuxaria.com/tag/ports" rel="tag">ports</a></span>
+</footer>
+</article>
+<article class="full-content post-8533 post type-post status-publish format-standard hentry category-article tag-home-automation tag-operating-systems tag-smartphone tag-vivint-sky-app category-10-id post-seq-2 post-parity-even meta-position-corners fix" id="post-8533">
+<header class='post-header title-container fix'>
+<div class="title">
+<h2 class="posttitle"><a href='https://linuxaria.com/article/why-smartphone-apps-will-help-home-automation-thrive' class='entry-title' rel='bookmark' title='Why Smartphone Apps Will Help Home Automation Thrive'>Why Smartphone Apps Will Help Home Automation Thrive</a></h2>
+<div class="postdata fix">
+<span class="category"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/category/article" rel="category tag">Articles</a></span>
+<span class="comments"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/article/why-smartphone-apps-will-help-home-automation-thrive#respond">No Responses &#187;</a></span>
+</div>
+</div>
+<div class="date"><span class="month">Oct</span> <span class="day">30</span><span class="year">2016</span></div>
+</header>
+<span class='post-format-icon'>&nbsp;</span><span class='updated' title='2016-10-30T10:58:21+00:00'></span> <div class="entry-container fix">
+<div class="entry entry-content fix">
+<div class="at-above-post-homepage addthis_tool" data-url="https://linuxaria.com/article/why-smartphone-apps-will-help-home-automation-thrive"></div><p class="p1">Guest post by Emma.</p>
+<p class="p1"><span class="s1"><a href="http://www.zillow.com/blog/future-home-automation-198907/">Home automation</a></span><span class="s2"> technology has struggled to gain serious traction because, for all its promised convenience, the current tangle of cords and communication standards still has consumers in knots. New quote-unquote-smart systems have made huge strides recently, but not everyone has chosen invest – yet. Totally “smart” homes still await the mainstream. To unlock this new market, technology companies are looking to a tool we’ve taken to heart already: the smart mobile phone.</span></p>
+<p class="p1"><span class='more-link fix'> <a href="https://linuxaria.com/article/why-smartphone-apps-will-help-home-automation-thrive#more-8533" class="more-link">Continue reading &raquo;</a></span></p>
+
+
+
+
+
+<div class="at-below-post-homepage addthis_tool" data-url="https://linuxaria.com/article/why-smartphone-apps-will-help-home-automation-thrive"></div>
+
+<p class="wp-flattr-button"><a href="https://linuxaria.com/?flattrss_redirect&amp;id=8533&amp;md5=0c3b44378422955aca036a9f92773b8b" title="Flattr" target="_blank"><img src="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" srcset="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="Flattr this!" /></a></p> </div>
+</div>
+<footer class="post-footer postdata fix">
+<span class="author"><span class="icon">&nbsp;</span>Posted by <span class="vcard"><a href="https://linuxaria.com/author/linuxari" class="url fn" rel="author">linuxari</a></span> at 10:58</span> <span class="tags tax"><span class="icon">&nbsp;</span>Tagged with: <a href="https://linuxaria.com/tag/home-automation" rel="tag">home automation</a>, <a href="https://linuxaria.com/tag/operating-systems" rel="tag">operating systems</a>, <a href="https://linuxaria.com/tag/smartphone" rel="tag">smartphone</a>, <a href="https://linuxaria.com/tag/vivint-sky-app" rel="tag">Vivint Sky App</a></span>
+</footer>
+</article>
+<article class="full-content post-8516 post type-post status-publish format-standard hentry category-howto category-opinion category-recensioni tag-git tag-git-lfs tag-git-annex tag-large-files tag-vcs category-27-id category-895-id category-13-id post-seq-3 post-parity-odd meta-position-corners fix" id="post-8516">
+<header class='post-header title-container fix'>
+<div class="title">
+<h2 class="posttitle"><a href='https://linuxaria.com/recensioni/storing-large-binary-files-in-git-repositories' class='entry-title' rel='bookmark' title='Storing large binary files in git repositories'>Storing large binary files in git repositories</a></h2>
+<div class="postdata fix">
+<span class="category"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/category/howto" rel="category tag">Guides</a>, <a href="https://linuxaria.com/category/opinion" rel="category tag">Opinion</a>, <a href="https://linuxaria.com/category/recensioni" rel="category tag">Reviews</a></span>
+<span class="comments"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/recensioni/storing-large-binary-files-in-git-repositories#respond">No Responses &#187;</a></span>
+</div>
+</div>
+<div class="date"><span class="month">Jul</span> <span class="day">17</span><span class="year">2016</span></div>
+</header>
+<span class='post-format-icon'>&nbsp;</span><span class='updated' title='2016-07-17T09:54:58+00:00'></span> <div class="entry-container fix">
+<div class="entry entry-content fix">
+<div class="at-above-post-homepage addthis_tool" data-url="https://linuxaria.com/recensioni/storing-large-binary-files-in-git-repositories"></div><p>This is a small update (1 year later) of a great article by <a href="http://blog.deveo.com/author/ilmari/">Ilmari Kontulainen</a>, first posted on <a href="http://blog.deveo.com/storing-large-binary-files-in-git-repositories/">blog.deveo.com</a>.</p>
+<p>I&#8217;ll post the original article in blockquote and my notes in <a style="color: darkgreen;">green</a>.</p>
+<blockquote><p>Storing large binary files in <a href="https://en.wikipedia.org/wiki/Git_(software)">Git</a> repositories seems to be a bottleneck for many Git users. Because of the decentralized nature of Git, which means every developer has the full change history on his or her computer, changes in large binary files cause Git repositories to grow by the size of the file in question every time the file is changed and the change is committed. The growth directly affects the amount of data end users need to retrieve when they need to clone the repository. Storing a snapshot of a virtual machine image, changing its state and storing the new state to a Git repository would grow the repository size approximately with the size of the respective snapshots. If this is day-to-day operation in your team, it might be that you are already feeling the pain from overly swollen Git repositories.</p>
+<p>Luckily there are multiple 3rd party implementations that will try to solve the problem, many of them using similar paradigm as a solution. In this blog post I will go through seven alternative approaches for handling large binary files in Git repositories with respective their pros and cons. I will conclude the post with some personal thoughts on choosing appropriate solution.</p></blockquote>
+<p><span class='more-link fix'> <a href="https://linuxaria.com/recensioni/storing-large-binary-files-in-git-repositories#more-8516" class="more-link">Continue reading &raquo;</a></span></p>
+
+
+
+
+
+<div class="at-below-post-homepage addthis_tool" data-url="https://linuxaria.com/recensioni/storing-large-binary-files-in-git-repositories"></div>
+
+<p class="wp-flattr-button"><a href="https://linuxaria.com/?flattrss_redirect&amp;id=8516&amp;md5=62221f53e53f1f160d269bd6cc742b0f" title="Flattr" target="_blank"><img src="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" srcset="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="Flattr this!" /></a></p> </div>
+</div>
+<footer class="post-footer postdata fix">
+<span class="author"><span class="icon">&nbsp;</span>Posted by <span class="vcard"><a href="https://linuxaria.com/author/linuxari" class="url fn" rel="author">linuxari</a></span> at 09:54</span> <span class="tags tax"><span class="icon">&nbsp;</span>Tagged with: <a href="https://linuxaria.com/tag/git" rel="tag">git</a>, <a href="https://linuxaria.com/tag/git-lfs" rel="tag">git lfs</a>, <a href="https://linuxaria.com/tag/git-annex" rel="tag">git-annex</a>, <a href="https://linuxaria.com/tag/large-files" rel="tag">large files</a>, <a href="https://linuxaria.com/tag/vcs" rel="tag">vcs</a></span>
+</footer>
+</article>
+<article class="full-content post-8510 post type-post status-publish format-standard hentry category-article tag-backup tag-computers tag-encryption tag-security tag-simple-software tag-virus category-10-id post-seq-4 post-parity-even meta-position-corners fix" id="post-8510">
+<header class='post-header title-container fix'>
+<div class="title">
+<h2 class="posttitle"><a href='https://linuxaria.com/article/are-you-prepared-for-a-catastrophic-data-loss' class='entry-title' rel='bookmark' title='Are You Prepared for a Catastrophic Data Loss?'>Are You Prepared for a Catastrophic Data Loss?</a></h2>
+<div class="postdata fix">
+<span class="category"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/category/article" rel="category tag">Articles</a></span>
+<span class="comments"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/article/are-you-prepared-for-a-catastrophic-data-loss#respond">No Responses &#187;</a></span>
+</div>
+</div>
+<div class="date"><span class="month">Jun</span> <span class="day">10</span><span class="year">2016</span></div>
+</header>
+<span class='post-format-icon'>&nbsp;</span><span class='updated' title='2016-06-10T09:17:22+00:00'></span> <div class="entry-container fix">
+<div class="entry entry-content fix">
+<div class="at-above-post-homepage addthis_tool" data-url="https://linuxaria.com/article/are-you-prepared-for-a-catastrophic-data-loss"></div><p><b></b>If you walked into the office this morning to find that your customer information had been compromised, or a disgruntled employee had wiped a database clean, would you be prepared? Have you set preventative measures in place to safeguard you against total loss? Do you have security features in place to help you retrieve lost data? Are you able to continue with business as usual or would a security breach such as this bring you to a standstill?</p>
+<p>It’s a lot to think about, but according to <a href="http://www.usatoday.com/story/tech/2014/09/24/data-breach-companies-60/16106197/"><i>USA Today</i></a>, approximately 43% of businesses encountered a data breach at some level in the year 2014. With percentages like this, the likelihood of it happening to your business is high. So again, are you prepared? Below are a few signs to determine whether your data loss prevention plan is intact or if your company’s data is vulnerable:</p>
+<p><span class='more-link fix'> <a href="https://linuxaria.com/article/are-you-prepared-for-a-catastrophic-data-loss#more-8510" class="more-link">Continue reading &raquo;</a></span></p>
+
+
+
+
+
+<div class="at-below-post-homepage addthis_tool" data-url="https://linuxaria.com/article/are-you-prepared-for-a-catastrophic-data-loss"></div>
+
+<p class="wp-flattr-button"><a href="https://linuxaria.com/?flattrss_redirect&amp;id=8510&amp;md5=bf46ef5fd73623c474931068ce9da29e" title="Flattr" target="_blank"><img src="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" srcset="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="Flattr this!" /></a></p> </div>
+</div>
+<footer class="post-footer postdata fix">
+<span class="author"><span class="icon">&nbsp;</span>Posted by <span class="vcard"><a href="https://linuxaria.com/author/linuxari" class="url fn" rel="author">linuxari</a></span> at 09:17</span> <span class="tags tax"><span class="icon">&nbsp;</span>Tagged with: <a href="https://linuxaria.com/tag/backup" rel="tag">backup</a>, <a href="https://linuxaria.com/tag/computers" rel="tag">computers</a>, <a href="https://linuxaria.com/tag/encryption" rel="tag">Encryption</a>, <a href="https://linuxaria.com/tag/security" rel="tag">security</a>, <a href="https://linuxaria.com/tag/simple-software" rel="tag">simple software</a>, <a href="https://linuxaria.com/tag/virus" rel="tag">virus</a></span>
+</footer>
+</article>
+<article class="full-content post-8502 post type-post status-publish format-standard hentry category-article category-howto tag-installation tag-linux tag-mint tag-rosa category-10-id category-27-id post-seq-5 post-parity-odd meta-position-corners fix" id="post-8502">
+<header class='post-header title-container fix'>
+<div class="title">
+<h2 class="posttitle"><a href='https://linuxaria.com/article/useful-steps-to-install-linux-mint-on-your-pc' class='entry-title' rel='bookmark' title='Useful steps to Install Linux Mint on your PC'>Useful steps to Install Linux Mint on your PC</a></h2>
+<div class="postdata fix">
+<span class="category"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/category/article" rel="category tag">Articles</a>, <a href="https://linuxaria.com/category/howto" rel="category tag">Guides</a></span>
+<span class="comments"><span class="icon">&nbsp;</span><a href="https://linuxaria.com/article/useful-steps-to-install-linux-mint-on-your-pc#respond">No Responses &#187;</a></span>
+</div>
+</div>
+<div class="date"><span class="month">May</span> <span class="day">03</span><span class="year">2016</span></div>
+</header>
+<span class='post-format-icon'>&nbsp;</span><span class='updated' title='2016-05-03T21:04:33+00:00'></span> <div class="entry-container fix">
+<div class="entry entry-content fix">
+<div class="at-above-post-homepage addthis_tool" data-url="https://linuxaria.com/article/useful-steps-to-install-linux-mint-on-your-pc"></div><p class="western" lang="en-US" align="justify">Guest Post by Oliver.</p>
+<p class="western" lang="en-US" align="justify">Linux Mint is one of the most powerful and elegant Operating system. The purpose of launching a Linux Mint in the market is to provide the modern and comfortable OS which is easy to use for every user. The best thing about Linux Mint is that it is both free and Open Source. Also, it comes at the third position after Microsoft Windows and Apple Mac OS. Due to its simplicity and clean design, it is worth for the user. Many users prefer it because it works well on low end machines or old hardware components. The latest version of Linux Mint is 17.3 and one can easily <a href="http://linux.softpedia.com/get/System/Operating-Systems/Linux-Distributions/Linux-Mint-Stable-30183.shtml"><i>download</i></a> it from the Search Engines. The process of Installing Linux Mint on your Windows PC is quite simple. Let’s see how we can install the Linux Mint on our System.</p>
+<h2 class="western" lang="en-US" align="justify">Go ahead and get started.</h2>
+<p class="western" lang="en-US" align="justify"><img class="aligncenter size-large wp-image-8503" src="https://cdn.linuxaria.com/wp-content/uploads/2016/05/mint17_1-1024x576.jpg" alt="mint17_1" width="695" height="391" srcset="https://cdn.linuxaria.com/wp-content/uploads/2016/05/mint17_1-1024x576.jpg 1024w, https://cdn.linuxaria.com/wp-content/uploads/2016/05/mint17_1-300x169.jpg 300w, https://cdn.linuxaria.com/wp-content/uploads/2016/05/mint17_1-768x432.jpg 768w, https://cdn.linuxaria.com/wp-content/uploads/2016/05/mint17_1.jpg 1280w" sizes="(max-width: 695px) 100vw, 695px" /></p>
+<p><span class='more-link fix'> <a href="https://linuxaria.com/article/useful-steps-to-install-linux-mint-on-your-pc#more-8502" class="more-link">Continue reading &raquo;</a></span></p>
+
+
+
+
+
+<div class="at-below-post-homepage addthis_tool" data-url="https://linuxaria.com/article/useful-steps-to-install-linux-mint-on-your-pc"></div>
+
+<p class="wp-flattr-button"><a href="https://linuxaria.com/?flattrss_redirect&amp;id=8502&amp;md5=ba8def37d30970032801119ed3877c75" title="Flattr" target="_blank"><img src="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" srcset="https://cdn.linuxaria.com/wp-content/plugins/flattr/img/flattr-badge-large.png" alt="Flattr this!" /></a></p> </div>
+</div>
+<footer class="post-footer postdata fix">
+<span class="author"><span class="icon">&nbsp;</span>Posted by <span class="vcard"><a href="https://linuxaria.com/author/linuxari" class="url fn" rel="author">linuxari</a></span> at 21:04</span> <span class="tags tax"><span class="icon">&nbsp;</span>Tagged with: <a href="https://linuxaria.com/tag/installation" rel="tag">installation</a>, <a href="https://linuxaria.com/tag/linux" rel="tag">linux</a>, <a href="https://linuxaria.com/tag/mint" rel="tag">mint</a>, <a href="https://linuxaria.com/tag/rosa" rel="tag">rosa</a></span>
+</footer>
+</article>
+<div class="page-nav fix">
+<div class="suf-page-nav fix">
+<span class="page-index">Page 1 of 160</span>
+<span class='page-numbers current'>1</span>
+<a class='page-numbers' href='/?paged=2'>2</a>
+<a class='page-numbers' href='/?paged=3'>3</a>
+<span class="page-numbers dots">&hellip;</span>
+<a class='page-numbers' href='/?paged=159'>159</a>
+<a class='page-numbers' href='/?paged=160'>160</a>
+<a class="next page-numbers" href="/?paged=2">Older Entries</a> </div>
+</div>
+</div>
+</div>
+<div id='sidebar-shell-1' class='sidebar-shell sidebar-shell-right'>
+<div class="dbx-group right boxed warea" id="sidebar">
+<style type="text/css">
+.qtranxs_widget ul { margin: 0; }
+.qtranxs_widget ul li
+{
+display: inline; /* horizontal list, use "list-item" or other appropriate value for vertical list */
+list-style-type: none; /* use "initial" or other to enable bullets */
+margin: 0 5px 0 0; /* adjust spacing between items */
+opacity: 0.5;
+-o-transition: 1s ease opacity;
+-moz-transition: 1s ease opacity;
+-webkit-transition: 1s ease opacity;
+transition: 1s ease opacity;
+}
+//.qtranxs_widget ul li span { margin: 0 5px 0 0; } /* other way to control spacing */
+.qtranxs_widget ul li.active { opacity: 0.8; }
+.qtranxs_widget ul li:hover { opacity: 1; }
+.qtranxs_widget img { box-shadow: none; vertical-align: middle; }
+.qtranxs_flag { height:12px; width:18px; display:block; }
+.qtranxs_flag_and_text { padding-left:20px; }
+.qtranxs_flag span { display:none; }
+</style>
+<aside id="qtranslate-4" class="dbx-box suf-widget qtranxs_widget"><div class="dbx-content"><h3 class="dbx-handle plain">Language:</h3>
+<ul class="language-chooser language-chooser-both qtranxs_language_chooser" id="qtranslate-4-chooser">
+<li class="active"><a href="https://linuxaria.com/?lang=en" class="qtranxs_flag_en qtranxs_flag_and_text" title="English (en)"><span>English</span></a></li>
+<li><a href="https://linuxaria.com/?lang=it" class="qtranxs_flag_it qtranxs_flag_and_text" title="Italiano (it)"><span>Italiano</span></a></li>
+</ul><div class="qtranxs_widget_end"></div>
+</div></aside><aside id="facebooklikebox-4" class="dbx-box suf-widget widget_FacebookLikeBox"><div class="dbx-content"><div id="fb-root"></div>
+<script>(function(d, s, id) {  
+ var js, fjs = d.getElementsByTagName(s)[0]; 
+  if (d.getElementById(id)) return; 
+  js = d.createElement(s); js.id = id; 
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3"; 
+  fjs.parentNode.insertBefore(js, fjs); 
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-page" data-href="https://www.facebook.com/linuxaria/" data-width="250" data-height="250" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/linuxaria/"><a href="https://www.facebook.com/linuxaria/">Facebook</a></blockquote></div></div>
+</div></aside><aside id="text-5" class="dbx-box suf-widget widget_text"><div class="dbx-content"><h3 class="dbx-handle plain">Sponsor</h3> <div class="textwidget"><table>
+<tr>
+<td>
+<a href="http://www.dhgate.com/wholesale+tablet+pc.html" rel="nofollow"> <img alt="buy tablet pc" title="Buy tablet pc on DHgate.com" src="/images/dhgate.jpg" /></a>
+</td>
+<td><a href="http://www.pcs4you.co.uk"><img class="alignnone" src="/images/pcs-ad.jpg" ; alt="" width="125" height="125" /></a>
+</td></tr>
+<tr>
+<td>
+<a title="ssd vps" href="https://schnellno.de"> <img alt="ssd vps" src="https://schnellno.de/promo/125x125_linuxaria.gif" /> </a>
+</td>
+<td>
+<a href="http://www.curtainhomesale.com/blog/" title="curtains"><img src="/images/curtains.jpg" ; alt="" height="125" /></a>
+</td>
+</tr><tr>
+<td>
+<a href="https://www.udemy.com/secure-your-network-like-a-furtune-500-company/"> <img src="/images/secureyournetwork.jpg" /> </a>
+</td>
+<td>
+<a href="http://www.kazila.com/xen-vps-hosting.html"> <img src="/images/kazilagif1.png" /> </a>
+</td></tr>
+<tr>
+<td>
+<a title="apk monk" href="http://www.apkmonk.com"> <img alt="apk monk" src="/images/rsz_weborial.png" /> </a>
+</td>
+</tr>
+</table></div>
+</div></aside><aside id="suf-subscription-5" class="dbx-box suf-widget widget-suf-subscription"><div class="dbx-content"><h3 class="dbx-handle plain">Follow Me</h3> <form class="aligncenter" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=Linuxaria_En', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+<p>
+<input type="text" name="email" value='Enter email address' class='subscription-email' onfocus="if (this.value == 'Enter email address') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email address';}" />
+<input type="hidden" value="Linuxaria_En" name="uri" />
+<input type="hidden" name="loc" value="en_US" />
+<input type="submit" value="Subscribe" />
+</p>
+</form>
+<p>
+<a href="https://feeds.feedburner.com/Linuxaria_En">
+<img src="https://feeds.feedburner.com/~fc/Linuxaria_En?bg=99CCFF&amp;fg=444444&amp;anim=0" class="subscription-stats-icon" alt="" />
+</a>
+</p>
+<div class='fix'>
+<a href="http://feeds.feedburner.com/Linuxaria_En" class="follow-icon-and-tag" title="RSS">
+<img src="https://cdn.linuxaria.com/wp-content/themes/suffusion/images/follow/RSS-09.png" alt="RSS" style='width: 48px; height: 48px;' />
+</a>
+<a href="http://twitter.com/linuxaria" class="follow-icon-and-tag" title="Twitter">
+<img src="https://cdn.linuxaria.com/wp-content/themes/suffusion/images/follow/Twitter-07.png" alt="Twitter" style='width: 48px; height: 48px;' />
+</a>
+<a href="http://www.facebook.com/linuxaria" class="follow-icon-and-tag" title="Facebook">
+<img src="https://cdn.linuxaria.com/wp-content/themes/suffusion/images/follow/Facebook-04.png" alt="Facebook" style='width: 48px; height: 48px;' />
+</a>
+<a href="https://plus.google.com/101727609700016666852" class="follow-icon-and-tag" title="Google+">
+<img src="https://cdn.linuxaria.com/wp-content/themes/suffusion/images/follow/Google%2B-05.png" alt="Google+" style='width: 48px; height: 48px;' />
+</a>
+</div>
+</div></aside><aside id="popular-posts" class="dbx-box suf-widget widget_rrm_popular_posts"><div class="dbx-content"><h3 class="dbx-handle plain">Popular posts</h3><ul>None Found
+</ul></div></aside><aside id="text-4" class="dbx-box suf-widget widget_text"><div class="dbx-content"><h3 class="dbx-handle plain">Subscribe by Email</h3> <div class="textwidget"><p><a href="https://feedburner.google.com/fb/a/mailverify?uri=Linuxaria_En&amp;loc=en_US">Subscribe to RSS» English by mail</a></p>
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=Linuxaria_It&amp;loc=en_US">Iscriviti agli RSS» Italiano via Email</a></p>
+</div>
+</div></aside></div>
+
+<div id="sidebar-b" class="dbx-group right boxed warea">
+<aside id="recent-comments-5" class="dbx-box suf-widget widget_recent_comments"><div class="dbx-content"><h3 class="dbx-handle plain">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">enrique</span> on <a href="https://linuxaria.com/howto/using-opendkim-to-sign-postfix-mails-on-debian#comment-74715">Using OpenDKIM to Sign Postfix Mails on Debian</a></li><li class="recentcomments"><span class="comment-author-link">elmontaser</span> on <a href="https://linuxaria.com/howto/how-to-verify-ddos-attack-with-netstat-command-on-linux-terminal#comment-71653">How to verify DDOS attack with netstat command on Linux Terminal</a></li><li class="recentcomments"><span class="comment-author-link">Roy</span> on <a href="https://linuxaria.com/howto/ways-boot-ubuntu-linux-from-a-usb-flash-drive#comment-71437">3 Ways To Boot Ubuntu Linux From a USB Flash Drive</a></li><li class="recentcomments"><span class="comment-author-link">David</span> on <a href="https://linuxaria.com/article/how-to-log-the-correct-ip-having-varnish-and-nginx#comment-71242">How to log the correct Ip having Varnish and Nginx</a></li><li class="recentcomments"><span class="comment-author-link"><a href='https://specious.github.io' rel='external nofollow' class='url'>Ildar Sagdejev</a></span> on <a href="https://linuxaria.com/article/fbcmd-manage-facebook-from-the-linux-terminal#comment-71202">fbcmd : Manage facebook from the Linux terminal</a></li></ul></div></aside><aside id="rss-3" class="dbx-box suf-widget widget_rss"><div class="dbx-content"><h3 class="dbx-handle plain"><a class="rsswidget" href="http://www.scoop.it/t/linux-and-open-source/rss.xml"><img class="rss-widget-icon" style="border:0" width="14" height="14" src="https://cdn.linuxaria.com/wp-includes/images/rss.png" alt="RSS" /></a> <a class="rsswidget" href="">My scoop.it feed</a></h3></div></aside> </div>
+
+</div>
+</div>
+</div>
+<footer>
+<div id='page-footer'>
+<div class='col-control'>
+<div id="cred">
+<table>
+<tr>
+<td class="cred-left">© 2013 <a href='http://www.linuxaria.com'>Linuxaria</a></td>
+<td class="cred-center">All site content, except where otherwise noted, is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</td>
+<td class="cred-right"><a href="http://aquoid.com/news/themes/suffusion/">Suffusion theme by Sayontan Sinha</a></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</footer>
+
+
+<div id="cookie-law-info-bar"><span>This website uses cookies to improve your experience. We'll assume you're ok with this, but you can opt-out if you wish.<a href="#" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button">Accept</a> <a href="http://linuxaria.com/privacy-policy" id="CONSTANT_OPEN_URL" target="_blank" class="cli-plugin-main-link">Read More</a></span></div><div id="cookie-law-info-again"><span id="cookie_hdr_showagain">Privacy & Cookies Policy</span></div>
+<script type="text/javascript">
+			//<![CDATA[
+			jQuery(document).ready(function() {
+				cli_show_cookiebar({
+					settings: '{"animate_speed_hide":"500","animate_speed_show":"500","background":"#fff","border":"#444","border_on":true,"button_1_button_colour":"#000","button_1_button_hover":"#000000","button_1_link_colour":"#fff","button_1_as_button":true,"button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":false,"font_family":"inherit","header_fix":false,"notify_animate_hide":true,"notify_animate_show":false,"notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":false,"scroll_close_reload":false,"showagain_tab":true,"showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#000","show_once_yn":false,"show_once":"10000"}'
+				});
+			});
+			//]]>
+		</script>
+<script data-cfasync="false" type="text/javascript" async="async" src="https://linuxaria.com/wp-admin/admin-ajax.php?action=addthis_global_options_settings"></script> <script data-cfasync="false" type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578bb2695c415e65" async="async"></script><script type='text/javascript' src='https://cdn.linuxaria.com/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}},"cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.7'></script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-content/plugins/wp-syntax/js/wp-syntax.js?ver=1.1'></script>
+<script type='text/javascript' src='https://cdn.linuxaria.com/wp-includes/js/wp-embed.js?ver=4.7.6'></script>
+</body>
+</html>
